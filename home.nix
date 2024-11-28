@@ -454,18 +454,6 @@
     )
 
     (
-      writeScriptBin "first-time-gphms" ''
-        #! ${pkgs.runtimeShell} -e
-
-        cd "$HOME/.config/nixpkgs" && git pull \
-        && export NIXPKGS_ALLOW_UNFREE=1; \
-        && nix flake lock \
-                --override-input nixpkgs github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4 \
-        && home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
-      ''
-    )
-
-    (
       writeScriptBin "gphms" ''
         #! ${pkgs.runtimeShell} -e
 
