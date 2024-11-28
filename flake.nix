@@ -40,7 +40,6 @@
     --override-input nixpkgs 'github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4' \
     --override-input home-manager 'github:nix-community/home-manager/aecd341dfead1c3ef7a3c15468ecd71e8343b7c6' \
     --override-input flake-utils 'github:numtide/flake-utils/b1d9ab70662946ef0850d488da1c9019f3a9752a'
-
   */
   inputs = {
     # Specify the source of Home Manager and Nixpkgs
@@ -49,7 +48,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = allAttrs@{ self, nixpkgs, home-manager, ... }:
+  outputs =
+    allAttrs@{
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
       # TODO: generalizar a arquitetura
       system = "x86_64-linux";
@@ -57,49 +62,56 @@
       pkgsAllowUnfree = import nixpkgs {
         # inherit system;
         system = "x86_64-linux";
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
 
-      f = { system, username }: home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."${system}";
+      f =
+        { system, username }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."${system}";
 
-        modules = [
-          {
-            home = {
-              username = "${username}";
-              homeDirectory = "/home/" + "${username}"; # TODO: no Mac o caminho é diferente. Existe como fazer isso de forma idiomática em nix lang.
-              stateVersion = "22.11";
-              # https://discourse.nixos.org/t/correct-way-to-use-nixpkgs-in-nix-shell-on-flake-based-system-without-channels/19360/3
-              sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs.outPath}";
+          modules = [
+            {
+              home = {
+                username = "${username}";
+                homeDirectory = "/home/" + "${username}"; # TODO: no Mac o caminho é diferente. Existe como fazer isso de forma idiomática em nix lang.
+                stateVersion = "22.11";
+                # https://discourse.nixos.org/t/correct-way-to-use-nixpkgs-in-nix-shell-on-flake-based-system-without-channels/19360/3
+                sessionVariables.NIX_PATH = "nixpkgs=${nixpkgs.outPath}";
 
-              sessionVariables.DIRENV_LOG_FORMAT = "";
+                sessionVariables.DIRENV_LOG_FORMAT = "";
 
-              /*
-                    https://github.com/NixOS/nixpkgs/issues/207339#issuecomment-1762960908
-                    pointerCursor = {
-                      gtk.enable = true;
-                      x11.enable = true;
-                      package = pkgsAllowUnfree.bibata-cursors;
-                      name = "Bibata-Modern-Amber";
-                      size = 28;
-                    };
-                    */
+                /*
+                      https://github.com/NixOS/nixpkgs/issues/207339#issuecomment-1762960908
+                      pointerCursor = {
+                        gtk.enable = true;
+                        x11.enable = true;
+                        package = pkgsAllowUnfree.bibata-cursors;
+                        name = "Bibata-Modern-Amber";
+                        size = 28;
+                      };
+                */
 
-            };
-            programs.home-manager.enable = true;
-          }
-          ./home.nix
-        ];
+              };
+              programs.home-manager.enable = true;
+            }
+            ./home.nix
+          ];
 
-        # to pass through arguments to home.nix
-        extraSpecialArgs = { nixpkgs = nixpkgs; };
-      };
+          # to pass through arguments to home.nix
+          extraSpecialArgs = {
+            nixpkgs = nixpkgs;
+          };
+        };
 
       # userAndHostname = {user, hostname, system}: { "${hostname}""${user}" = f { system = $system; username = $username; }; };
 
       # https://gist.github.com/tpwrules/34db43e0e2e9d0b72d30534ad2cda66d#file-flake-nix-L28
-      pleaseKeepMyInputs = pkgsAllowUnfree.writeTextDir "bin/.please-keep-my-inputs"
-        (builtins.concatStringsSep " " (builtins.attrValues allAttrs));
+      pleaseKeepMyInputs = pkgsAllowUnfree.writeTextDir "bin/.please-keep-my-inputs" (
+        builtins.concatStringsSep " " (builtins.attrValues allAttrs)
+      );
 
     in
     {
@@ -110,11 +122,20 @@
         # sudo su
         # echo 'ubuntu2204-ec2' > /etc/hostname
         # hostname ubuntu2204-ec2
-        ubuntu-ubuntu2204-ec2 = f { system = "x86_64-linux"; username = "ubuntu"; };
+        ubuntu-ubuntu2204-ec2 = f {
+          system = "x86_64-linux";
+          username = "ubuntu";
+        };
 
         # GNU/Linux
-        pedro-nixos = f { system = "x86_64-linux"; username = "pedro"; };
-        pedro-pedro-G3 = f { system = "x86_64-linux"; username = "pedro"; };
+        pedro-nixos = f {
+          system = "x86_64-linux";
+          username = "pedro";
+        };
+        pedro-pedro-G3 = f {
+          system = "x86_64-linux";
+          username = "pedro";
+        };
       };
 
       # nix fmt
@@ -131,31 +152,28 @@
           python3Full
           tmate
 
+          (writeScriptBin "first-time-gphms" ''
+            #! ${pkgs.runtimeShell} -e
 
-            (
-              writeScriptBin "first-time-gphms" ''
-                #! ${pkgs.runtimeShell} -e
-
-                cd "$HOME/.config/nixpkgs" && git pull \
-                && export NIXPKGS_ALLOW_UNFREE=1; \
-                && nix flake lock \
-                        --override-input nixpkgs github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4 \
-                && home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
-              ''
-            )
+            cd "$HOME/.config/nixpkgs" && git pull \
+            && export NIXPKGS_ALLOW_UNFREE=1; \
+            && nix flake lock \
+                    --override-input nixpkgs github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4 \
+            && home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
+          '')
 
           pleaseKeepMyInputs
         ];
 
         shellHook = ''
 
-            test -d .profiles || mkdir -v .profiles
-            test -L .profiles/dev \
-            || nix develop .# --profile .profiles/dev --command true
-            test -L .profiles/dev-shell-default \
-            || nix build $(nix eval --impure --raw .#devShells.x86_64-linux.default.drvPath) --out-link .profiles/dev-shell-default
-            
-          '';
+          test -d .profiles || mkdir -v .profiles
+          test -L .profiles/dev \
+          || nix develop .# --profile .profiles/dev --command true
+          test -L .profiles/dev-shell-default \
+          || nix build $(nix eval --impure --raw .#devShells.x86_64-linux.default.drvPath) --out-link .profiles/dev-shell-default
+
+        '';
       };
     };
 }

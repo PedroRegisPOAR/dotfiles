@@ -160,47 +160,47 @@
     # fontforge-gtk # TODO: testar fontes usando esse programa
     # pango
 
-    # arphic-ukai
-    # arphic-uming
-    # aurulent-sans
-    # comic-relief
-    # corefonts           # Microsoft free fonts
-    # dejavu_fonts
-    # dina-font
-    # fira                # Monospace
-    # fira-code
-    # fira-code-symbols
-    # font-awesome # font-awesome-ttf, font-awesome_4
-    # freefont_ttf
-    # hack-font
-    # hasklig
-    # inconsolata         # Monospace
-    # ionicons
-    # lato
-    # liberation_ttf
-    # lineicons
-    # montserrat
-    # mplus-outline-fonts
-    nerdfonts # Really big, but only this font fixed some issues with starship
-    # noto-fonts
-    # noto-fonts-emoji
-    # noto-fonts-extra
-    powerline
-    powerline-fonts
-    # source-han-sans-japanese
-    # source-han-sans-korean
-    # source-han-sans-simplified-chinese
-    # source-han-sans-traditional-chinese
-    # source-sans
-    # source-sans-pro
-    # sudo-font
-    # symbola
-    # twemoji-color-font
-    # ubuntu_font_family
-    # unifont             # International languages
-    # wqy_microhei
-    # wqy_zenhei
-    # xkcd-font
+     # hack-font
+     # ionicons
+     # lineicons
+     # mplus-outline-fonts
+     # unifont             # International languages
+     arphic-ukai
+     arphic-uming
+     aurulent-sans
+     comic-relief
+     corefonts           # Microsoft free fonts
+     dejavu_fonts
+     dina-font
+     fira                # Monospace
+     fira-code
+     fira-code-symbols
+     font-awesome # font-awesome-ttf, font-awesome_4
+     freefont_ttf
+     hasklig
+     inconsolata         # Monospace
+     lato
+     liberation_ttf
+     montserrat
+     nerdfonts # Really big, but only this font fixed some issues with starship
+     noto-fonts
+     noto-fonts-emoji
+     noto-fonts-extra
+     powerline
+     powerline-fonts
+     source-han-sans-japanese
+     source-han-sans-korean
+     source-han-sans-simplified-chinese
+     source-han-sans-traditional-chinese
+     source-sans
+     source-sans-pro
+     sudo-font
+     symbola
+     twemoji-color-font
+     ubuntu_font_family
+     wqy_microhei
+     wqy_zenhei
+     xkcd-font
 
     # (nerdfonts.override { fonts = [ "FiraCode"]; })
     #      (
@@ -570,9 +570,10 @@
     # ];
     fontconfig = {
       enable = true;
-      #  defaultFonts = {
-      #      monospace = [ "Droid Sans Mono Slashed for Powerline" ];
-      #  };
+
+       # defaultFonts = {
+       #     monospace = [ "Droid Sans Mono Slashed for Powerline" ];
+       # };
     };
   };
 

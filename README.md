@@ -4,16 +4,39 @@ Note: foi possível preservar todo o conteúdo do `/nix`.
 
 1)
 ```bash
-test -n "${USER+1}" || { echo 'The variable USER is not set!' && return }
+# It is broken in bash
+# test -n "${USER+1}" || { echo 'The variable USER is not set!' && return }
+
+curl -L https://hydra.nixos.org/build/278365608/download-by-type/file/binary-dist > nix \
+&& chmod +x nix \
+&& ./nix --version
 
 rm -frv /home/"$USER"/.config/nixpkgs/
 
-nix \
+./nix \
 flake \
 clone \
 'git+ssh://git@github.com/PedroRegisPOAR/dotfiles' \
---dest /home/"$USER"/.config/nixpkgs \
-&& time first-time-gphms
+--dest /home/"$USER"/.config/nixpkgs
+
+./nix \
+--option sandbox true \
+--extra-experimental-features nix-command \
+--extra-experimental-features flakes \
+shell \
+--override-flake \
+nixpkgs \
+github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4 \
+nixpkgs#bashInteractive \
+nixpkgs#home-manager \
+nixpkgs#nix \
+--command \
+bash \
+-c \
+'
+export NIXPKGS_ALLOW_UNFREE=1;
+home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
+'
 ```
 Refs.:
 - https://unix.stackexchange.com/a/654575
