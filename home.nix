@@ -94,7 +94,7 @@
     # Just enabling it is not adding it to "$HOME"/.nix-profile/bin
     # it must exists in  ls -alh "$HOME"/.nix-profile/bin pointing to
     # /nix/store/*-home-manager-path/bin/nix
-    # nix
+    nix
     # nixVersions.nix_2_10
 
     # pciutils # lspci and others
