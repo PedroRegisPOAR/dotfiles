@@ -19,6 +19,7 @@
     # google-chrome
     #inkscape
     insomnia
+    postman
     jetbrains.pycharm-community
     keepassxc
     kolourpaint
@@ -26,6 +27,7 @@
     # obsidian
     okular
     peek
+    # kwave # TODO: it opens but when saving the audio file it errors
     # postman
     # qbittorrent
 
@@ -51,6 +53,7 @@
     # ghidra
     # rustdesk
     # tts
+    ngrok
 
     xorg.xclock
     xclip
@@ -155,52 +158,200 @@
     xdotool
     # spice-gtk
     # virt-viewer
+    mypy
+
+    nodejs
+    nodePackages."@angular/cli"
+
+    microsoft-edge
+
+    # 
+    # audio-recorder
+    # audacity
+    # tenacity # ?
 
     fontconfig
     # fontforge-gtk # TODO: testar fontes usando esse programa
     # pango
 
-     # hack-font
-     # ionicons
-     # lineicons
-     # mplus-outline-fonts
-     # unifont             # International languages
-     arphic-ukai
-     arphic-uming
-     aurulent-sans
-     comic-relief
-     corefonts           # Microsoft free fonts
-     dejavu_fonts
-     dina-font
-     fira                # Monospace
-     fira-code
-     fira-code-symbols
-     font-awesome # font-awesome-ttf, font-awesome_4
-     freefont_ttf
-     hasklig
-     inconsolata         # Monospace
-     lato
-     liberation_ttf
-     montserrat
-     nerdfonts # Really big, but only this font fixed some issues with starship
-     noto-fonts
-     noto-fonts-emoji
-     noto-fonts-extra
-     powerline
-     powerline-fonts
-     source-han-sans-japanese
-     source-han-sans-korean
-     source-han-sans-simplified-chinese
-     source-han-sans-traditional-chinese
-     source-sans
-     source-sans-pro
-     sudo-font
-     symbola
-     twemoji-color-font
-     ubuntu_font_family
-     wqy_microhei
-     wqy_zenhei
-     xkcd-font
+
+    # arphic-ukai
+    # arphic-uming
+    # google-fonts
+    # hack-font
+    # ionicons
+    # lineicons
+    # mplus-outline-fonts
+    # proggyfonts
+    # roboto
+    # source-sans-pro
+    # (nerdfonts.override {fonts = ["Iosevka"];})
+    # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    anonymousPro
+    aurulent-sans
+    # babelstone-han
+    unicode-emoji
+    icu76
+    unifont_upper
+    cm_unicode
+    hannom
+    clearlyU
+    # unifont
+    unidings
+    mro-unicode
+    ttf-indic
+    gyre-fonts
+    assyrian
+    joypixels
+    julia-mono
+    emojione
+    noto-fonts-monochrome-emoji
+    whatsapp-emoji-font
+    xmoji
+    ultimate-oldschool-pc-font-pack
+    openttd-ttf
+    arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
+    bakoma_ttf
+    stix-otf
+
+    agave
+    meslo-lgs-nf
+    ttf_bitstream_vera
+    dosemu_fonts
+    sarasa-gothic
+    scientifica
+    victor-mono
+    comfortaa
+    
+    stix-two
+    oldstandard
+    fantasque-sans-mono
+    monoid
+    # siji
+    mononoki
+    cm_unicode
+    bakoma_ttf
+    lmmath
+    # etBook
+    # eb-garamond
+    # tamsyn
+    recursive
+    # material-design-icons
+    # material-icons
+    inter
+    atkinson-hyperlegible
+    maple-mono
+    maple-mono-NF
+    cozette    
+    meslo-lg
+    meslo-lgs-nf
+    awesome
+    noto-fonts-monochrome-emoji
+    sketchybar-app-font
+    iosevka
+    iosevka-comfy.comfy
+    iosevka-comfy.comfy-wide
+    iosevka-comfy.comfy-motion
+    iosevka-comfy.comfy-wide-motion
+    monaspace
+    # roboto-slab
+
+    # sf-symbols
+    # sf-mono-liga
+
+    # line-awesome
+    # open-sans
+    # rubik
+    # lato
+    # spleen
+
+    cascadia-code
+
+    xorg.fontbitstream100dpi
+    xorg.fontbitstream75dpi
+    xorg.fontbitstreamtype1
+
+    cantarell-fonts
+    comic-relief
+    corefonts
+    dejavu_fonts
+    dina-font
+    dosemu_fonts
+    emacs-all-the-icons-fonts
+    emacsPackages.unicode-fonts
+    fira 
+    fira-code
+    fira-code-nerdfont    
+    fira-code-symbols
+    fira-mono
+    font-awesome
+    font-awesome_4
+    font-awesome_5
+    freefont_ttf
+    gentium
+    gyre-fonts
+    hasklig
+    helvetica-neue-lt-std
+    ibm-plex
+    inconsolata
+    inconsolata-nerdfont
+    iosevka
+    ipaexfont
+    ipafont
+    jetbrains-mono
+    lato
+    liberation_ttf
+    libertine
+    libre-caslon
+    material-design-icons
+    material-icons
+    montserrat
+    mplus-outline-fonts.githubRelease
+    nerdfonts
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    noto-fonts-emoji
+    noto-fonts-extra
+    noto-fonts-lgc-plus
+    open-fonts
+    openmoji-color
+    openmoji-black
+    oxygenfonts
+    powerline
+    powerline-fonts
+    redhat-official-fonts
+    roboto-mono
+    roboto-slab
+    source-code-pro
+    source-han-mono
+    source-han-sans 
+    source-han-serif
+    source-han-sans-japanese
+    source-han-sans-korean
+    source-han-sans-simplified-chinese
+    source-han-sans-traditional-chinese
+    source-sans
+    stix-two
+    sudo-font
+    symbola
+    terminus-nerdfont
+    textfonts
+    twemoji-color-font
+    twitter-color-emoji
+    ubuntu_font_family
+    ultimate-oldschool-pc-font-pack
+    vistafonts
+    wqy_microhei
+    wqy_zenhei
+    xkcd-font
+
+    # Persian Font
+    vazir-fonts
+    shabnam-fonts
+    vazir-code-font    
+
 
     # (nerdfonts.override { fonts = [ "FiraCode"]; })
     #      (
@@ -219,6 +370,7 @@
     #        }
     #      )
 
+    # TODO: how to test it?
     # zsh-nix-shell
     # zsh-powerlevel10k
     # zsh-powerlevel9k
@@ -554,9 +706,11 @@
       "discord"
       "gitkraken"
       "google-chrome"
+      "joypixels"
       "slack"
       "vscode"
     ];
+    joypixels.acceptLicense = true;
   };
 
   services.systembus-notify.enable = true;
@@ -571,6 +725,13 @@
     fontconfig = {
       enable = true;
 
+        # defaultFonts = {
+        #   serif = ["IPAexMincho" "Noto Serif CJK JP" "Noto Serif"];
+        #   sansSerif = ["IPAexGothic" "Noto Sans CJK JP" "Noto Sans"];
+        #   monospace = ["JetBrains Mono"];
+        #   emoji = ["Noto Color Emoji"];
+        # }; 
+
        # defaultFonts = {
        #     monospace = [ "Droid Sans Mono Slashed for Powerline" ];
        # };
@@ -582,8 +743,8 @@
     # bashrcExtra = "echo foo-bar";
     sessionVariables = {
       A_B_C = "a-b-c";
-      FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
-      FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts/";
+      # FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+      # FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts/";
     };
   };
 
@@ -636,6 +797,8 @@
   #      '';
   #  };
 
+  # home.language.base = "en-US.UTF-8";
+
   # https://www.reddit.com/r/NixOS/comments/fenb4u/zsh_with_ohmyzsh_with_powerlevel10k_in_nix/
   programs.zsh = {
     # Your zsh config
@@ -685,7 +848,7 @@
       # ZSH_AUTOSUGGEST_MANUAL_REBIND="true";
       # PROMPT="|%F{153}%n@%m%f|%F{174}%1~%f> ";
 
-      LANG = "en_US.utf8";
+      # LANG = "en_US.utf8";
       # fc-match list
       FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
       FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts/";
@@ -741,7 +904,7 @@
         "pip"
         "poetry"
         "python"
-        "ripgrep"
+        # "ripgrep"
         "rsync"
         "rust"
         "scala"
@@ -822,8 +985,16 @@
         display = [
           {
             style = "red bold";
-            threshold = 10;
+            threshold = 35;
           }
+          {
+            "style" = "italic dimmed bright-purple";
+            "threshold" = 50;
+          }
+          {
+            "style" = "italic dimmed yellow";
+            "threshold" = 70;
+          }          
         ];
       };
       buf = {
@@ -1308,6 +1479,8 @@
         format = "$symbol[$ram( | $swap)]($style) ";
         style = "white bold dimmed";
         symbol = " ";
+        # symbol = "\\\uf538 ";
+        # symbol = "⚙️ ";
         # threshold = 75;
         threshold = -1;
       };
@@ -1338,6 +1511,7 @@
         impure_msg = "[impure](bold red)";
         pure_msg = "[pure](bold green)";
         style = "bold blue";
+        # symbol = " ";
         symbol = " ";
       };
       nodejs = {
@@ -1722,6 +1896,177 @@
     # enableFishIntegration = true;
     # enableBashIntegration = true;
     enableZshIntegration = true;
+  };
+
+  # https://nixos.wiki/wiki/VSCodium
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+    # package = pkgs.vscodium;
+    extensions = (with pkgs.vscode-extensions; [
+      arrterian.nix-env-selector
+      bbenoist.nix
+      brettm12345.nixfmt-vscode
+      jnoortheen.nix-ide
+      # kamadorueda.alejandra
+      mkhl.direnv
+
+      catppuccin.catppuccin-vsc
+
+      # emmanuelbeziat.vscode-great-icons # How to test it?
+
+      ms-python.debugpy # Python debugger (debugpy) extension for VS Code
+      ms-python.python
+      ms-python.vscode-pylance  # Test it!
+      matangover.mypy
+
+      ms-vscode.makefile-tools
+      # twxs.cmake
+      # ms-vscode.cmake-tools
+
+      # mechatroner.rainbow-csv
+      # matklad.rust-analyzer
+      # eamodio.gitlens
+      # streetsidesoftware.code-spell-checker
+      # earshinov.sort-lines-by-selection
+      # tyriar.sort-lines
+      # tabnine.tabnine-vscode
+      # ms-vscode-remote.remote-ssh
+      redhat.vscode-yaml
+      ms-azuretools.vscode-docker
+      
+      # esbenp.prettier-vscode
+      yzhang.markdown-all-in-one
+
+      ms-vscode-remote.remote-containers
+
+      /*
+       ms-vsliveshare.vsliveshare # TODO
+      alefragnani.project-manager
+      astro-build.astro-vscode
+      bradlc.vscode-tailwindcss
+      cardinal90.multi-cursor-case-preserve
+      christian-kohler.npm-intellisense
+      christian-kohler.path-intellisense
+      dbaeumer.vscode-eslint
+      eamodio.gitlens
+      editorconfig.editorconfig
+      emeraldwalk.runonsave
+      esbenp.prettier-vscode
+      formulahendry.auto-complete-tag
+      formulahendry.code-runner
+      golang.go
+      jnoortheen.nix-ide
+      meganrogge.template-string-converter
+      mikestead.dotenv
+      mkhl.direnv
+      ms-azuretools.vscode-docker
+      naumovs.color-highlight
+      oderwat.indent-rainbow
+      redhat.vscode-yaml
+      renesaarsoo.sql-formatter-vsc
+      rust-lang.rust-analyzer
+      svelte.svelte-vscode
+      tamasfe.even-better-toml
+      usernamehw.errorlens
+      yzhang.markdown-all-in-one
+      */
+      
+    ]);
+    userSettings = let 
+      # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', 'monospace', monospace";
+      # theFont = "'FiraCode Nerd Font', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
+      # theFont = "'Sarasa Term J SemiBold', 'JuliaMono', monospace";
+      # theFont = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
+      # theFont = "'FiraCode Nerd Font'";
+      # theFont = ''"Monaspace Krypton", "Font Awesome 6 Free", "Font Awesome 6 Brands", "monospace"'';
+      # theFont = "'MesloLGS NF', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
+      # theFont = "'Monaspace Krypton', 'MesloLGS Nerd Font Mono', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
+      # theFont = "'MesloLGS Nerd Font', 'JuliaMono', monospace";
+      # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', monospace";
+      # theFont = "'Hack Nerd Font', monospace";
+      # theFont = "'MesloLGS Nerd Font Mono', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Noto Emoji', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Twitter Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Twemoji Mozilla', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'EmojiOne Color', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Apple Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'CodeNewRoman Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
+      # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
+      theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
+      # 'OpenMoji Color',
+
+    in {
+       # "editor.formatOnSave" = false;
+
+      # Workbench
+      # "workbench.colorTheme" = "Monokai Pro";
+      # "workbench.iconTheme" = "Monokai Pro Icons";
+      # "workbench.colorTheme" = "Gruvbox Dark Hard";
+      # "workbench.colorTheme" = "One Dark Pro";      
+      "workbench.colorTheme" = "Catppuccin Mocha";
+
+      # Editor
+      # "editor.acceptSuggestionOnEnter" = "off";
+      "editor.autoClosingBrackets" = "always";
+      # "editor.cursorBlinking" = "smooth";
+      # "editor.cursorSmoothCaretAnimation" = true;
+      # "editor.cursorStyle" = "line";
+      "editor.fontFamily" = "${theFont}";
+            
+      # "editor.fontFamily" = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
+      # "editor.fontFamily" = "'FiraCode Nerd Font', monospace";
+      # "editor.fontFamily" = "'FiraCode Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
+      # "editor.fontFamily" = "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', monospace";
+      # "editor.fontFamily" = "'FiraCode Nerd Font','Menlo', 'DejaVu Sans Mono', 'Consolas', 'Lucida Console', monospace";
+      # "terminal.integrated.fontFamily" = "Jetbrains Mono";
+      # 
+      "editor.fontLigatures" = false;
+      "editor.fontSize" = 16;
+      # "editor.fontWeight" = "700";
+      # "editor.formatOnPaste" = true;
+      # "editor.formatOnSave" = true;
+      # "editor.formatOnType" = true;
+      # "editor.renderFinalNewline" = false;
+      # "editor.rulers" = [ 80 ];
+      # "editor.smoothScrolling" = true;
+      # "editor.stickyTabStops" = true;
+      # "editor.suggest.preview" = true;
+      # "editor.guides.bracketPairs" = true;
+
+      "terminal.integrated.fontSize" = 22;
+      "terminal.integrated.fontFamily" = "${theFont}";
+      # "terminal.integrated.sendKeybindingsToShell" = true; # What exactly does it do?
+
+      # Telemetry
+      "telemetry.telemetryLevel" = "off";
+      "redhat.telemetry.enabled" = false;
+      "gitlens.telemetry.enabled" = false;
+      "continue.telemetryEnabled" = false;
+
+      # Files
+      # "files.autoSave" = "on";
+      "files.autoSave" = "afterDelay";
+      # "files.eol" = "\n";
+      # "files.exclude" = { };
+      # "files.insertFinalNewline" = true;
+      # "files.trimFinalNewlines" = true;
+      # "files.trimTrailingWhitespace" = true;
+      
+
+      "search.exclude" = {
+        "**/.direnv" = true;
+      };
+      "files.exclude" = {
+        "**/.direnv" = true;
+      };      
+    };
+    enableExtensionUpdateCheck = false;
+    enableUpdateCheck = false;
+    mutableExtensionsDir = true;
   };
 
   programs.home-manager = {
