@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, ... }:
+{ pkgs, nixpkgs, pkgsPy389, ... }:
 
 {
 
@@ -59,7 +59,7 @@
     xclip
     xsel
     # vncdo
-    yt-dlp
+    yt-dlp # yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --restrict-filenames --no-playlist --output "%(title)s.%(ext)s" https://www.youtube.com/watch\?v\=ID
 
     # sudo $(which lshw) -C display
     # sudo dmesg | grep drm
@@ -163,6 +163,13 @@
     nodejs
     nodePackages."@angular/cli"
 
+    # Legacy python 3.8.9 and pipenv
+    pkgsPy389.python3
+    pkgsPy389.pipenv
+    pkgsPy389.stdenv.cc.cc.lib
+
+    uv
+
     microsoft-edge
 
     # 
@@ -207,7 +214,7 @@
     julia-mono
     emojione
     noto-fonts-monochrome-emoji
-    whatsapp-emoji-font
+    # whatsapp-emoji-font
     xmoji
     ultimate-oldschool-pc-font-pack
     openttd-ttf
@@ -636,6 +643,20 @@
     )
 
     (
+      writeScriptBin "copy-rsa-keys" ''
+        #! ${pkgs.runtimeShell} -e
+
+        echo 'This script copies the pair of keys id_rsa and id_rsa.pub. Hit enter to continue!' \
+        && read \
+        && xclip -selection clipboard -in < ~/.ssh/id_rsa.pub \
+        && echo 'Copied the public key ~/.ssh/id_rsa.pub' \
+        && read \
+        && xclip -selection clipboard -in < ~/.ssh/id_rsa \
+        && echo 'Copied the private key ~/.ssh/id_rsa'
+      ''
+    )
+
+    (
       writeScriptBin "fix-ubuntu" ''
         #! ${pkgs.runtimeShell} -e
 
@@ -679,13 +700,15 @@
 
       # nix-path = "nixpkgs=flake:nixpkgs";
 
-      keep-outputs = true;
       keep-derivations = true;
       keep-env-derivations = true;
+      keep-failed = true;
+      keep-going = true;
+      keep-outputs = true;
 
       # bash-prompt = "(ZZZ)\040";
       # bash-prompt-suffix = "WWW";
-      bash-prompt-prefix = "(nix:$name)\\040"; # TODO: why double \\? https://crates.io/crates/nix-installer/0.15.1
+      bash-prompt-prefix = "(nix-d3v3l0p:$name)\\040"; # TODO: why double \\? https://crates.io/crates/nix-installer/0.15.1
 
       tarball-ttl = 60 * 60 * 24 * 7 * 4; # = 2419200 = one month
       # readOnlyStore = true;
@@ -1904,6 +1927,17 @@
     package = pkgs.vscode;
     # package = pkgs.vscodium;
     extensions = (with pkgs.vscode-extensions; [
+      /*
+      edonet.vscode-command-runner
+      ms-python.debugpy
+      ms-python.python
+      ms-python.vscode-pylance
+      charliermarsh.ruff
+      jgclark.vscode-todo-highlight # wayou.vscode-todo-highlight
+      gruntfuggly.todo-tree
+      */
+
+      /*
       arrterian.nix-env-selector
       bbenoist.nix
       brettm12345.nixfmt-vscode
@@ -1911,34 +1945,35 @@
       # kamadorueda.alejandra
       mkhl.direnv
 
-      catppuccin.catppuccin-vsc
-
-      # emmanuelbeziat.vscode-great-icons # How to test it?
-
-      ms-python.debugpy # Python debugger (debugpy) extension for VS Code
+      edonet.vscode-command-runner
+      ms-python.debugpy
       ms-python.python
-      ms-python.vscode-pylance  # Test it!
+      ms-python.vscode-pylance
+      charliermarsh.ruff
+      jgclark.vscode-todo-highlight # wayou.vscode-todo-highlight
+      gruntfuggly.todo-tree
+
       matangover.mypy
-
-      ms-vscode.makefile-tools
-      # twxs.cmake
-      # ms-vscode.cmake-tools
-
-      # mechatroner.rainbow-csv
-      # matklad.rust-analyzer
-      # eamodio.gitlens
-      # streetsidesoftware.code-spell-checker
-      # earshinov.sort-lines-by-selection
-      # tyriar.sort-lines
-      # tabnine.tabnine-vscode
-      # ms-vscode-remote.remote-ssh
+      ms-vscode-remote.remote-containers
       redhat.vscode-yaml
       ms-azuretools.vscode-docker
-      
-      # esbenp.prettier-vscode
+      ms-vscode.makefile-tools
       yzhang.markdown-all-in-one
+      tyriar.sort-lines      
+      mechatroner.rainbow-csv
+      eamodio.gitlens
+      */
 
-      ms-vscode-remote.remote-containers
+      # twxs.cmake
+      # ms-vscode.cmake-tools
+      # catppuccin.catppuccin-vsc
+      # emmanuelbeziat.vscode-great-icons # How to test it?
+      # matklad.rust-analyzer
+      # streetsidesoftware.code-spell-checker
+      # earshinov.sort-lines-by-selection
+      # tabnine.tabnine-vscode
+      # ms-vscode-remote.remote-ssh
+      # esbenp.prettier-vscode
 
       /*
        ms-vsliveshare.vsliveshare # TODO
@@ -2037,7 +2072,7 @@
       # "editor.suggest.preview" = true;
       # "editor.guides.bracketPairs" = true;
 
-      "terminal.integrated.fontSize" = 22;
+      "terminal.integrated.fontSize" = 16;
       "terminal.integrated.fontFamily" = "${theFont}";
       # "terminal.integrated.sendKeybindingsToShell" = true; # What exactly does it do?
 

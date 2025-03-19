@@ -143,6 +143,16 @@ nix flake metadata github:NixOS/nixpkgs/release-22.05
 ```
 
 
+```bash
+# nix flake metadata github:NixOS/nixpkgs/nixos-24.11
+nix \
+flake \
+lock \
+--override-input nixpkgs 'github:NixOS/nixpkgs/107d5ef05c0b1119749e381451389eded30fb0d5' \
+--recreate-lock-file
+```
+
+
 ### Proxmox nix builder
 
 

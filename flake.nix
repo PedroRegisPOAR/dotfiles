@@ -45,6 +45,7 @@
     # Specify the source of Home Manager and Nixpkgs
     home-manager.url = "github:nix-community/home-manager";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgsPy389.url = "github:NixOS/nixpkgs/b0f0b5c6c021ebafbd322899aa9a54b87d75a313";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -52,6 +53,7 @@
     allAttrs@{
       self,
       nixpkgs,
+      nixpkgsPy389,
       home-manager,
       ...
     }:
@@ -65,6 +67,10 @@
         config = {
           allowUnfree = true;
         };
+      };
+
+      pkgsPy389 = import nixpkgsPy389 {
+        system = "x86_64-linux";
       };
 
       f =
@@ -103,6 +109,7 @@
           # to pass through arguments to home.nix
           extraSpecialArgs = {
             nixpkgs = nixpkgs;
+            pkgsPy389 = pkgsPy389;
           };
         };
 
