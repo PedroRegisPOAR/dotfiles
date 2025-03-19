@@ -145,11 +145,18 @@ nix flake metadata github:NixOS/nixpkgs/release-22.05
 
 ```bash
 # nix flake metadata github:NixOS/nixpkgs/nixos-24.11
+# 107d5ef05c0b1119749e381451389eded30fb0d5
+
+# nix flake metadata github:nix-community/home-manager/release-24.11 --refresh
+# nix flake metadata github:NixOS/nixpkgs/nixos-24.11 --refresh
+# nix flake metadata github:numtide/flake-utils --refresh
+
 nix \
 flake \
 lock \
---override-input nixpkgs 'github:NixOS/nixpkgs/107d5ef05c0b1119749e381451389eded30fb0d5' \
---recreate-lock-file
+--override-input nixpkgs 'github:NixOS/nixpkgs/cdd2ef009676ac92b715ff26630164bb88fec4e0' \
+--override-input flake-utils 'github:numtide/flake-utils/11707dc2f618dd54ca8739b309ec4fc024de578b' \
+--override-input home-manager 'github:nix-community/home-manager/f6af7280a3390e65c2ad8fd059cdc303426cbd59'
 ```
 
 

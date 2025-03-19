@@ -53,7 +53,7 @@
     # ghidra
     # rustdesk
     # tts
-    ngrok
+    ngrok # mirror problem
 
     xorg.xclock
     xclip
@@ -209,7 +209,7 @@
     mro-unicode
     ttf-indic
     gyre-fonts
-    assyrian
+    # assyrian # mirror problem
     joypixels
     julia-mono
     emojione
