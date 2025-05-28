@@ -16,7 +16,7 @@
     # discord
     #gimp
     gitkraken
-    # google-chrome
+    google-chrome
     #inkscape
     insomnia
     postman
@@ -29,7 +29,11 @@
     peek
     # kwave # TODO: it opens but when saving the audio file it errors
     # postman
-    # qbittorrent
+    qbittorrent
+
+    # jadx
+    # ida-free
+    # frida-tools
 
     # slack
     # (slack.overrideAttrs (old: {
@@ -162,6 +166,8 @@
 
     nodejs
     nodePackages."@angular/cli"
+    yarn
+    bun
 
     # Legacy python 3.8.9 and pipenv
     pkgsPy389.python3
@@ -230,7 +236,7 @@
     scientifica
     victor-mono
     comfortaa
-    
+
     stix-two
     oldstandard
     fantasque-sans-mono
@@ -250,7 +256,7 @@
     atkinson-hyperlegible
     maple-mono
     maple-mono-NF
-    cozette    
+    cozette
     meslo-lg
     meslo-lgs-nf
     awesome
@@ -287,9 +293,9 @@
     dosemu_fonts
     emacs-all-the-icons-fonts
     emacsPackages.unicode-fonts
-    fira 
+    fira
     fira-code
-    fira-code-nerdfont    
+    fira-code-nerdfont
     fira-code-symbols
     fira-mono
     font-awesome
@@ -333,7 +339,7 @@
     roboto-slab
     source-code-pro
     source-han-mono
-    source-han-sans 
+    source-han-sans
     source-han-serif
     source-han-sans-japanese
     source-han-sans-korean
@@ -357,7 +363,7 @@
     # Persian Font
     vazir-fonts
     shabnam-fonts
-    vazir-code-font    
+    vazir-code-font
 
 
     # (nerdfonts.override { fonts = [ "FiraCode"]; })
@@ -429,7 +435,7 @@
         #! ${pkgs.runtimeShell} -e
 
            echo "Start kvm stuff..." \
-           && getent group kvm || sudo groupadd kvm \
+           && (getent group kvm || sudo groupadd kvm) \
            && sudo usermod --append --groups kvm "$USER" \
            && echo "End kvm stuff!"
 
@@ -539,6 +545,13 @@
       writeScriptBin "nfm" ''
         #! ${pkgs.runtimeShell} -e
         nix flake metadata $1
+      ''
+    )
+
+    (
+      writeScriptBin "nfs" ''
+        #! ${pkgs.runtimeShell} -e
+        nix flake show $1
       ''
     )
 
@@ -748,16 +761,16 @@
     fontconfig = {
       enable = true;
 
-        # defaultFonts = {
-        #   serif = ["IPAexMincho" "Noto Serif CJK JP" "Noto Serif"];
-        #   sansSerif = ["IPAexGothic" "Noto Sans CJK JP" "Noto Sans"];
-        #   monospace = ["JetBrains Mono"];
-        #   emoji = ["Noto Color Emoji"];
-        # }; 
+      # defaultFonts = {
+      #   serif = ["IPAexMincho" "Noto Serif CJK JP" "Noto Serif"];
+      #   sansSerif = ["IPAexGothic" "Noto Sans CJK JP" "Noto Sans"];
+      #   monospace = ["JetBrains Mono"];
+      #   emoji = ["Noto Color Emoji"];
+      # }; 
 
-       # defaultFonts = {
-       #     monospace = [ "Droid Sans Mono Slashed for Powerline" ];
-       # };
+      # defaultFonts = {
+      #     monospace = [ "Droid Sans Mono Slashed for Powerline" ];
+      # };
     };
   };
 
@@ -1017,7 +1030,7 @@
           {
             "style" = "italic dimmed yellow";
             "threshold" = 70;
-          }          
+          }
         ];
       };
       buf = {
@@ -2006,99 +2019,101 @@
       usernamehw.errorlens
       yzhang.markdown-all-in-one
       */
-      
+
     ]);
-    userSettings = let 
-      # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', 'monospace', monospace";
-      # theFont = "'FiraCode Nerd Font', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
-      # theFont = "'Sarasa Term J SemiBold', 'JuliaMono', monospace";
-      # theFont = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
-      # theFont = "'FiraCode Nerd Font'";
-      # theFont = ''"Monaspace Krypton", "Font Awesome 6 Free", "Font Awesome 6 Brands", "monospace"'';
-      # theFont = "'MesloLGS NF', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
-      # theFont = "'Monaspace Krypton', 'MesloLGS Nerd Font Mono', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
-      # theFont = "'MesloLGS Nerd Font', 'JuliaMono', monospace";
-      # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', monospace";
-      # theFont = "'Hack Nerd Font', monospace";
-      # theFont = "'MesloLGS Nerd Font Mono', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Noto Emoji', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Twitter Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Twemoji Mozilla', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'EmojiOne Color', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Apple Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'CodeNewRoman Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
-      # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
-      theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
-      # 'OpenMoji Color',
+    userSettings =
+      let
+        # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', 'monospace', monospace";
+        # theFont = "'FiraCode Nerd Font', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
+        # theFont = "'Sarasa Term J SemiBold', 'JuliaMono', monospace";
+        # theFont = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
+        # theFont = "'FiraCode Nerd Font'";
+        # theFont = ''"Monaspace Krypton", "Font Awesome 6 Free", "Font Awesome 6 Brands", "monospace"'';
+        # theFont = "'MesloLGS NF', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
+        # theFont = "'Monaspace Krypton', 'MesloLGS Nerd Font Mono', 'Maple Mono NF', 'Zed Mono', Mensch, Menlo, Consolas, Monaco, 'Courier New',\"FiraCode Nerd Font Mono\", \"Noto Sans Mono CJK JP\", 'JuliaMono', monospace";
+        # theFont = "'MesloLGS Nerd Font', 'JuliaMono', monospace";
+        # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', monospace";
+        # theFont = "'Hack Nerd Font', monospace";
+        # theFont = "'MesloLGS Nerd Font Mono', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Noto Emoji', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Twitter Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Twemoji Mozilla', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'EmojiOne Color', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Apple Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'CodeNewRoman Nerd Font Mono', 'Noto Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
+        # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
+        theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
+        # 'OpenMoji Color',
 
-    in {
-       # "editor.formatOnSave" = false;
+      in
+      {
+        # "editor.formatOnSave" = false;
 
-      # Workbench
-      # "workbench.colorTheme" = "Monokai Pro";
-      # "workbench.iconTheme" = "Monokai Pro Icons";
-      # "workbench.colorTheme" = "Gruvbox Dark Hard";
-      # "workbench.colorTheme" = "One Dark Pro";      
-      "workbench.colorTheme" = "Catppuccin Mocha";
+        # Workbench
+        # "workbench.colorTheme" = "Monokai Pro";
+        # "workbench.iconTheme" = "Monokai Pro Icons";
+        # "workbench.colorTheme" = "Gruvbox Dark Hard";
+        # "workbench.colorTheme" = "One Dark Pro";      
+        "workbench.colorTheme" = "Catppuccin Mocha";
 
-      # Editor
-      # "editor.acceptSuggestionOnEnter" = "off";
-      "editor.autoClosingBrackets" = "always";
-      # "editor.cursorBlinking" = "smooth";
-      # "editor.cursorSmoothCaretAnimation" = true;
-      # "editor.cursorStyle" = "line";
-      "editor.fontFamily" = "${theFont}";
-            
-      # "editor.fontFamily" = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
-      # "editor.fontFamily" = "'FiraCode Nerd Font', monospace";
-      # "editor.fontFamily" = "'FiraCode Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
-      # "editor.fontFamily" = "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', monospace";
-      # "editor.fontFamily" = "'FiraCode Nerd Font','Menlo', 'DejaVu Sans Mono', 'Consolas', 'Lucida Console', monospace";
-      # "terminal.integrated.fontFamily" = "Jetbrains Mono";
-      # 
-      "editor.fontLigatures" = false;
-      "editor.fontSize" = 16;
-      # "editor.fontWeight" = "700";
-      # "editor.formatOnPaste" = true;
-      # "editor.formatOnSave" = true;
-      # "editor.formatOnType" = true;
-      # "editor.renderFinalNewline" = false;
-      # "editor.rulers" = [ 80 ];
-      # "editor.smoothScrolling" = true;
-      # "editor.stickyTabStops" = true;
-      # "editor.suggest.preview" = true;
-      # "editor.guides.bracketPairs" = true;
+        # Editor
+        # "editor.acceptSuggestionOnEnter" = "off";
+        "editor.autoClosingBrackets" = "always";
+        # "editor.cursorBlinking" = "smooth";
+        # "editor.cursorSmoothCaretAnimation" = true;
+        # "editor.cursorStyle" = "line";
+        "editor.fontFamily" = "${theFont}";
 
-      "terminal.integrated.fontSize" = 16;
-      "terminal.integrated.fontFamily" = "${theFont}";
-      # "terminal.integrated.sendKeybindingsToShell" = true; # What exactly does it do?
+        # "editor.fontFamily" = "'CodeNewRoman Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
+        # "editor.fontFamily" = "'FiraCode Nerd Font', monospace";
+        # "editor.fontFamily" = "'FiraCode Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
+        # "editor.fontFamily" = "'FiraCode Nerd Font Mono','Droid Sans Mono', 'monospace', monospace";
+        # "editor.fontFamily" = "'FiraCode Nerd Font','Menlo', 'DejaVu Sans Mono', 'Consolas', 'Lucida Console', monospace";
+        # "terminal.integrated.fontFamily" = "Jetbrains Mono";
+        # 
+        "editor.fontLigatures" = false;
+        "editor.fontSize" = 16;
+        # "editor.fontWeight" = "700";
+        # "editor.formatOnPaste" = true;
+        # "editor.formatOnSave" = true;
+        # "editor.formatOnType" = true;
+        # "editor.renderFinalNewline" = false;
+        # "editor.rulers" = [ 80 ];
+        # "editor.smoothScrolling" = true;
+        # "editor.stickyTabStops" = true;
+        # "editor.suggest.preview" = true;
+        # "editor.guides.bracketPairs" = true;
 
-      # Telemetry
-      "telemetry.telemetryLevel" = "off";
-      "redhat.telemetry.enabled" = false;
-      "gitlens.telemetry.enabled" = false;
-      "continue.telemetryEnabled" = false;
+        "terminal.integrated.fontSize" = 16;
+        "terminal.integrated.fontFamily" = "${theFont}";
+        # "terminal.integrated.sendKeybindingsToShell" = true; # What exactly does it do?
 
-      # Files
-      # "files.autoSave" = "on";
-      "files.autoSave" = "afterDelay";
-      # "files.eol" = "\n";
-      # "files.exclude" = { };
-      # "files.insertFinalNewline" = true;
-      # "files.trimFinalNewlines" = true;
-      # "files.trimTrailingWhitespace" = true;
-      
+        # Telemetry
+        "telemetry.telemetryLevel" = "off";
+        "redhat.telemetry.enabled" = false;
+        "gitlens.telemetry.enabled" = false;
+        "continue.telemetryEnabled" = false;
 
-      "search.exclude" = {
-        "**/.direnv" = true;
+        # Files
+        # "files.autoSave" = "on";
+        "files.autoSave" = "afterDelay";
+        # "files.eol" = "\n";
+        # "files.exclude" = { };
+        # "files.insertFinalNewline" = true;
+        # "files.trimFinalNewlines" = true;
+        # "files.trimTrailingWhitespace" = true;
+
+
+        "search.exclude" = {
+          "**/.direnv" = true;
+        };
+        "files.exclude" = {
+          "**/.direnv" = true;
+        };
       };
-      "files.exclude" = {
-        "**/.direnv" = true;
-      };      
-    };
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     mutableExtensionsDir = true;

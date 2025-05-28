@@ -61,12 +61,11 @@
   };
 
   outputs =
-    allAttrs@{
-      self,
-      nixpkgs,
-      nixpkgsPy389,
-      home-manager,
-      ...
+    allAttrs@{ self
+    , nixpkgs
+    , nixpkgsPy389
+    , home-manager
+    , ...
     }:
     let
       # TODO: generalizar a arquitetura
@@ -157,7 +156,7 @@
       };
 
       # nix fmt
-      formatter."x86_64-linux" = pkgsAllowUnfree.nixfmt-rfc-style;
+      formatter."x86_64-linux" = pkgsAllowUnfree.nixpkgs-fmt;
 
       devShells."x86_64-linux".default = pkgsAllowUnfree.mkShell {
         buildInputs = with pkgsAllowUnfree; [
