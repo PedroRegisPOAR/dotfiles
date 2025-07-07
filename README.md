@@ -7,7 +7,7 @@ Note: foi possível preservar todo o conteúdo do `/nix`.
 # It is broken in bash
 # test -n "${USER+1}" || { echo 'The variable USER is not set!' && return }
 
-curl -L https://hydra.nixos.org/build/278365608/download-by-type/file/binary-dist > nix \
+curl -L https://hydra.nixos.org/build/297111184/download-by-type/file/binary-dist > nix \
 && chmod +x nix \
 && ./nix --version
 
@@ -34,7 +34,9 @@ nixpkgs#nix \
 bash \
 -c \
 '
-export NIXPKGS_ALLOW_UNFREE=1;
+export NIXPKGS_ALLOW_UNFREE=1
+export NIX_CONFIG="extra-experimental-features = nix-command flakes auto-allocate-uids"
+
 home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
 '
 ```

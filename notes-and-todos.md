@@ -5,15 +5,15 @@ When I was trying to use vscode with "correct fonts" endedup in this mess!!
 
 ## Fonts, locale and more
 
-
-fc-match emoji | grep -q 'NotoColorEmoji.ttf: "Noto Color Emoji" "Regular"'
-
+```bash
+fc-match emoji | grep 'NotoColorEmoji.ttf: "Noto Color Emoji" "Regular"'
 
 fc-cache -rfv
+```
 
+TODO: it was IA regurgitation, test it!
 
-
-Certainly! If the symbol isn't rendering properly, you can represent it by using the following character codes or names:
+You can represent it by using the following character codes or names:
 
     Memory Chip: U+F5F8
         Description: This symbol is a representation of a microchip or memory module, commonly used to represent memory.
@@ -218,13 +218,31 @@ magick -pointsize 500 label:"W" output.pdf
 
 
 ```bash
-ffmpeg -f lavfi -i color=c=white:s=640x480 -vf \
-"drawtext=text='A':font='Courier New':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
--vframes 1 output.png -y
+ffmpeg \
+-f lavfi \
+-i color=c=white:s=640x480 \
+-vframes 1 \
+-vf "drawtext=text='A':font='Courier New':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
+'output_%03d.png' -y
+
+ffmpeg \
+-f lavfi \
+-i color=c=white:s=640x480 \
+-vframes 1 \
+-vf "drawtext=text='📦':font='Courier New':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
+'output_%03d.png' -y
 
 ffmpeg -f lavfi -i color=c=white:s=640x480 -vf \
 "drawtext=text='📦':font='Courier New':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
 -vframes 1 output.png -y
+
+
+ffmpeg \
+-f lavfi \
+-i color=c=white:s=640x480 \
+-vframes 1 \
+"drawtext=text='📦':font='Noto Color Emoji':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
+'output_%03d.png' -y
 
 ffmpeg -f lavfi -i color=c=white:s=640x480 -vf \
 "drawtext=text='📦':font='Noto Color Emoji':fontcolor=black:fontsize=500:x=(w-text_w)/2:y=(h-text_h)/2" \
@@ -330,6 +348,20 @@ cat /etc/locale.gen
 
 ls -l /var/lib/locales/supported.d/
 ```
+
+```bash
+echo "Some text with accents: é ç ñ" | iconv -f UTF-8 -t ISO-8859-1 > file.txt
+file -i file.txt
+iconv -f ISO-8859-1 -t UTF-8 file.txt
+```
+
+```bash
+echo -e "Line 1\r\nLine 2 with é" | iconv -f UTF-8 -t ISO-8859-1 > win_encoded.txt
+file -i win_encoded.txt
+iconv -f ISO-8859-1 -t UTF-8 win_encoded.txt
+```
+
+TODO: unix2dos
 
 
 TODO: file, iconv, encguess, enca, npm's detect-file-encoding-and-language / dfeal, python, perl, php, uchardet

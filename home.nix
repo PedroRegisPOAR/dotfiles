@@ -12,7 +12,7 @@
     #anydesk
     #blender
     #brave
-    # dbeaver
+    dbeaver-bin # dbeaver
     # discord
     #gimp
     gitkraken
@@ -22,14 +22,15 @@
     postman
     jetbrains.pycharm-community
     keepassxc
-    kolourpaint
+    kdePackages.kolourpaint
     # libreoffice
     # obsidian
-    okular
+    kdePackages.okular
     peek
     # kwave # TODO: it opens but when saving the audio file it errors
     # postman
     qbittorrent
+    wkhtmltopdf
 
     # jadx
     # ida-free
@@ -57,7 +58,7 @@
     # ghidra
     # rustdesk
     # tts
-    ngrok # mirror problem
+    # ngrok # mirror problem
 
     xorg.xclock
     xclip
@@ -176,7 +177,7 @@
 
     uv
 
-    microsoft-edge
+    # microsoft-edge
 
     # 
     # audio-recorder
@@ -201,187 +202,339 @@
     # (nerdfonts.override {fonts = ["Iosevka"];})
     # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    anonymousPro
-    aurulent-sans
-    # babelstone-han
-    unicode-emoji
-    icu76
-    unifont_upper
-    cm_unicode
-    hannom
-    clearlyU
-    # unifont
-    unidings
-    mro-unicode
-    ttf-indic
-    gyre-fonts
-    # assyrian # mirror problem
-    joypixels
-    julia-mono
-    emojione
-    noto-fonts-monochrome-emoji
-    # whatsapp-emoji-font
-    xmoji
-    ultimate-oldschool-pc-font-pack
-    openttd-ttf
-    arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
-    bakoma_ttf
-    stix-otf
 
-    agave
-    meslo-lgs-nf
-    ttf_bitstream_vera
-    dosemu_fonts
-    sarasa-gothic
-    scientifica
-    victor-mono
-    comfortaa
+    # anonymousPro
+    # aurulent-sans
+    # # babelstone-han
+    # unicode-emoji
+    # icu76
+    # unifont_upper
+    # cm_unicode
+    # hannom
+    # clearlyU
+    # # unifont
+    # unidings
+    # mro-unicode
+    # ttf-indic
+    # gyre-fonts
+    # # assyrian # mirror problem
+    # joypixels
+    # julia-mono
+    # emojione
+    # noto-fonts-monochrome-emoji
+    # # whatsapp-emoji-font
+    # xmoji
+    # ultimate-oldschool-pc-font-pack
+    # openttd-ttf
+    # arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
+    # bakoma_ttf
+    # stix-otf
 
-    stix-two
-    oldstandard
-    fantasque-sans-mono
-    monoid
-    # siji
-    mononoki
-    cm_unicode
-    bakoma_ttf
-    lmmath
-    # etBook
-    # eb-garamond
-    # tamsyn
-    recursive
+    # agave
+    # meslo-lgs-nf
+    # ttf_bitstream_vera
+    # dosemu_fonts
+    # sarasa-gothic
+    # scientifica
+    # victor-mono
+    # comfortaa
+
+    # stix-two
+    # oldstandard
+    # fantasque-sans-mono
+    # monoid
+    # # siji
+    # mononoki
+    # cm_unicode
+    # bakoma_ttf
+    # lmmath
+    # # etBook
+    # # eb-garamond
+    # # tamsyn
+    # recursive
+    # # material-design-icons
+    # # material-icons
+    # inter
+    # atkinson-hyperlegible
+    # maple-mono
+    # maple-mono.NF # maple-mono-NF
+    # cozette
+    # meslo-lg
+    # meslo-lgs-nf
+    # awesome
+    # noto-fonts-monochrome-emoji
+    # sketchybar-app-font
+    # iosevka
+    # iosevka-comfy.comfy
+    # iosevka-comfy.comfy-wide
+    # iosevka-comfy.comfy-motion
+    # iosevka-comfy.comfy-wide-motion
+    # monaspace
+    # # roboto-slab
+
+    # # sf-symbols
+    # # sf-mono-liga
+
+    # # line-awesome
+    # # open-sans
+    # # rubik
+    # # lato
+    # # spleen
+
+    # cascadia-code
+
+    # xorg.fontbitstream100dpi
+    # xorg.fontbitstream75dpi
+    # xorg.fontbitstreamtype1
+
+    # cantarell-fonts
+    # comic-relief
+    # corefonts
+    # dejavu_fonts
+    # dina-font
+    # dosemu_fonts
+    # emacs-all-the-icons-fonts
+    # emacsPackages.unicode-fonts
+    # fira
+    # fira-code
+    # fira-code-nerdfont
+    # fira-code-symbols
+    # fira-mono
+    # font-awesome
+    # font-awesome_4
+    # font-awesome_5
+    # freefont_ttf
+    # gentium
+    # gyre-fonts
+    # hasklig
+    # helvetica-neue-lt-std
+    # ibm-plex
+    # inconsolata
+    # inconsolata-nerdfont
+    # iosevka
+    # ipaexfont
+    # ipafont
+    # jetbrains-mono
+    # lato
+    # liberation_ttf
+    # libertine
+    # libre-caslon
     # material-design-icons
     # material-icons
-    inter
-    atkinson-hyperlegible
-    maple-mono
-    maple-mono-NF
-    cozette
-    meslo-lg
-    meslo-lgs-nf
-    awesome
-    noto-fonts-monochrome-emoji
-    sketchybar-app-font
-    iosevka
-    iosevka-comfy.comfy
-    iosevka-comfy.comfy-wide
-    iosevka-comfy.comfy-motion
-    iosevka-comfy.comfy-wide-motion
-    monaspace
+    # montserrat
+    # mplus-outline-fonts.githubRelease
+    # nerdfonts
+    # noto-fonts
+    # noto-fonts-cjk-sans
+    # noto-fonts-color-emoji
+    # noto-fonts-emoji
+    # noto-fonts-extra
+    # noto-fonts-lgc-plus
+    # open-fonts
+    # openmoji-color
+    # openmoji-black
+    # oxygenfonts
+    # powerline
+    # powerline-fonts
+    # redhat-official-fonts
+    # roboto-mono
     # roboto-slab
+    # source-code-pro
+    # source-han-mono
+    # source-han-sans
+    # source-han-serif
+    # source-han-sans-japanese
+    # source-han-sans-korean
+    # source-han-sans-simplified-chinese
+    # source-han-sans-traditional-chinese
+    # source-sans
+    # stix-two
+    # sudo-font
+    # symbola
+    # terminus-nerdfont
+    # textfonts
+    # twemoji-color-font
+    # twitter-color-emoji
+    # ubuntu_font_family
+    # ultimate-oldschool-pc-font-pack
+    # vistafonts
+    # wqy_microhei
+    # wqy_zenhei
+    # xkcd-font
 
-    # sf-symbols
-    # sf-mono-liga
+    # # Persian Font
+    # vazir-fonts
+    # shabnam-fonts
+    # vazir-code-font
 
-    # line-awesome
-    # open-sans
-    # rubik
-    # lato
+
+    # New sorted
+    #
+    # dina-font
+    # efont-unicode
+    # envypn-font
+    # gohufont
+    # google-fonts
+    # hack-font
+    # profont
+    # proggyfonts
+    # roboto
+    # roboto-mono
+    # roboto-slab
+    # siji
     # spleen
-
-    cascadia-code
-
-    xorg.fontbitstream100dpi
-    xorg.fontbitstream75dpi
-    xorg.fontbitstreamtype1
-
+    # tamsyn
+    # tamzen
+    # ucs-fonts
+    agave
+    aileron
+    anonymousPro
+    ark-pixel-font
+    arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
+    atkinson-hyperlegible
+    aurulent-sans
+    awesome
+    bakoma_ttf
+    bqn386
+    camingo-code
     cantarell-fonts
+    cascadia-code
+    clearlyU
+    cm_unicode
+    comfortaa
     comic-relief
     corefonts
+    cozette
     dejavu_fonts
-    dina-font
     dosemu_fonts
     emacs-all-the-icons-fonts
     emacsPackages.unicode-fonts
+    emojione
+    fantasque-sans-mono
     fira
     fira-code
-    fira-code-nerdfont
     fira-code-symbols
     fira-mono
     font-awesome
     font-awesome_4
+    font-awesome_4
     font-awesome_5
     freefont_ttf
     gentium
+    go-font
     gyre-fonts
+    hackgen-font
+    hackgen-nf-font
+    hannom
     hasklig
     helvetica-neue-lt-std
+    hermit
     ibm-plex
-    inconsolata
-    inconsolata-nerdfont
+    icu76
+    inter
     iosevka
+    iosevka-comfy.comfy
+    iosevka-comfy.comfy-motion
+    iosevka-comfy.comfy-wide
+    iosevka-comfy.comfy-wide-motion
     ipaexfont
     ipafont
     jetbrains-mono
+    joypixels
+    julia-mono
+    last-resort
     lato
     liberation_ttf
     libertine
     libre-caslon
+    lmmath
+    lmodern
+    maple-mono.NF
+    maple-mono.NF-CN # Old named as: maple-mono-SC-NF
+    maple-mono.NormalNL-TTF-AutoHint # This maple-mono font package have 44 fonts
     material-design-icons
     material-icons
+    meslo-lg
+    meslo-lgs-nf
+    monaspace
+    monoid
+    mononoki
     montserrat
     mplus-outline-fonts.githubRelease
-    nerdfonts
+    mro-unicode
+    nerd-fonts.fira-code # Old named as fira-code-nerdfont
+    nerd-fonts.inconsolata # Old named as inconsolata
+    nerd-fonts.terminess-ttf # Old named as terminus-nerdfont
     noto-fonts
     noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-color-emoji
     noto-fonts-emoji
     noto-fonts-extra
     noto-fonts-lgc-plus
+    noto-fonts-monochrome-emoji
+    oldstandard
     open-fonts
     openmoji-color
-    openmoji-black
+    openttd-ttf
     oxygenfonts
+    paratype-pt-sans
     powerline
     powerline-fonts
+    recursive
     redhat-official-fonts
-    roboto-mono
-    roboto-slab
+    rounded-mgenplus
+    sarasa-gothic
+    scientifica
+    shabnam-fonts
+    sketchybar-app-font
     source-code-pro
     source-han-mono
     source-han-sans
-    source-han-serif
     source-han-sans-japanese
     source-han-sans-korean
     source-han-sans-simplified-chinese
     source-han-sans-traditional-chinese
+    source-han-sans-vf-ttf
+    source-han-serif
+    source-han-serif-vf-ttf
     source-sans
+    stix-otf
     stix-two
     sudo-font
     symbola
-    terminus-nerdfont
+    terminus_font
+    terminus_font_ttf
     textfonts
+    ttf_bitstream_vera
+    ttf-indic
     twemoji-color-font
     twitter-color-emoji
     ubuntu_font_family
+    udev-gothic
+    udev-gothic-nf
+    uiua386
     ultimate-oldschool-pc-font-pack
+    undefined-medium
+    unicode-emoji
+    unidings
+    unifont_upper
+    unscii
+    uw-ttyp0
+    vazir-code-font
+    vazir-fonts
+    victor-mono
     vistafonts
+    vistafonts-chs
     wqy_microhei
     wqy_zenhei
     xkcd-font
-
-    # Persian Font
-    vazir-fonts
-    shabnam-fonts
-    vazir-code-font
-
-
-    # (nerdfonts.override { fonts = [ "FiraCode"]; })
-    #      (
-    #        nerdfonts.override {
-    #          fonts = [
-    #            "AnonymousPro"
-    #            "DroidSansMono"
-    #            "FiraCode"
-    #            "JetBrainsMono"
-    #            "Noto"
-    #            "Terminus"
-    #            "Hack"
-    #            "Ubuntu"
-    #            "UbuntuMono"
-    #          ];
-    #        }
-    #      )
+    xmoji
+    xorg.fontbitstream100dpi
+    xorg.fontbitstream75dpi
+    xorg.fontbitstreamtype1
+    xorg.xbitmaps
+    zpix-pixel-font
 
     # TODO: how to test it?
     # zsh-nix-shell
@@ -1939,7 +2092,7 @@
     enable = true;
     package = pkgs.vscode;
     # package = pkgs.vscodium;
-    extensions = (with pkgs.vscode-extensions; [
+    profiles.default.extensions = (with pkgs.vscode-extensions; [
       /*
       edonet.vscode-command-runner
       ms-python.debugpy
@@ -2021,7 +2174,7 @@
       */
 
     ]);
-    userSettings =
+    profiles.default.userSettings =
       let
         # theFont = "'MesloLGS Nerd Font Mono', 'JuliaMono', 'monospace', monospace";
         # theFont = "'FiraCode Nerd Font', 'Noto Sans Mono CJK JP', 'JuliaMono', monospace";
@@ -2106,7 +2259,6 @@
         # "files.trimFinalNewlines" = true;
         # "files.trimTrailingWhitespace" = true;
 
-
         "search.exclude" = {
           "**/.direnv" = true;
         };
@@ -2114,9 +2266,9 @@
           "**/.direnv" = true;
         };
       };
-    enableExtensionUpdateCheck = false;
-    enableUpdateCheck = false;
-    mutableExtensionsDir = true;
+    profiles.default.enableExtensionUpdateCheck = false;
+    profiles.default.enableUpdateCheck = false;
+    mutableExtensionsDir = true; # TODO: hardenig
   };
 
   programs.home-manager = {
