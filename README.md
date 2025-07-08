@@ -1,6 +1,5 @@
 # dotfiles
 
-Note: foi possível preservar todo o conteúdo do `/nix`.
 
 1)
 ```bash
@@ -11,23 +10,21 @@ curl -L https://hydra.nixos.org/build/297111184/download-by-type/file/binary-dis
 && chmod +x nix \
 && ./nix --version
 
-rm -frv /home/"$USER"/.config/nixpkgs/
+sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 
 ./nix \
-flake \
-clone \
-'git+ssh://git@github.com/PedroRegisPOAR/dotfiles' \
---dest /home/"$USER"/.config/nixpkgs
-
-./nix \
---option sandbox true \
 --extra-experimental-features nix-command \
 --extra-experimental-features flakes \
 shell \
+--ignore-environment \
+--keep HOME \
+--keep USER \
 --override-flake \
 nixpkgs \
-github:NixOS/nixpkgs/057f63b6dc1a2c67301286152eb5af20747a9cb4 \
+github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
 nixpkgs#bashInteractive \
+nixpkgs#coreutils \
+nixpkgs#git \
 nixpkgs#home-manager \
 nixpkgs#nix \
 --command \
@@ -37,7 +34,18 @@ bash \
 export NIXPKGS_ALLOW_UNFREE=1
 export NIX_CONFIG="extra-experimental-features = nix-command flakes auto-allocate-uids"
 
+test -d /home/"$USER"/.config/nixpkgs && rm -frv /home/"$USER"/.config/nixpkgs/
+nix \
+flake \
+clone \
+--override-flake \
+nixpkgs \
+github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
+'github:PedroRegisPOAR/dotfiles' \
+--dest /home/"$USER"/.config/nixpkgs
+
 home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
+# home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#pedro-pedro-G3
 '
 ```
 Refs.:

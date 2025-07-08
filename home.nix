@@ -1004,8 +1004,8 @@
       fi
     '';
 
-    # initExtra = "neofetch --ascii_distro NixOS_small --color_blocks off --disable cpu gpu memory term de resolution kernel model";
-    initExtra = "${pkgs.neofetch}/bin/neofetch"; # TODO: checar se esse pacote é seguro
+    # initContent = "neofetch --ascii_distro NixOS_small --color_blocks off --disable cpu gpu memory term de resolution kernel model";
+    initContent = "${pkgs.neofetch}/bin/neofetch"; # TODO: checar se esse pacote é seguro
 
     # promptInit = ''
     #   export POWERLEVEL9K_MODE=nerdfont-complete
