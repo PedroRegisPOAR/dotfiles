@@ -8,6 +8,11 @@ DETERMINATE_SYSTEMS="v3.1.1" \
   Linux) KERNEL="linux" ;; \
   *) echo "Unsupported kernel: $KERNEL" && exit 1 ;; \
   esac \
+&& case "$KERNEL" in \
+  Darwin) PLANNER="macos" ;; \
+  Linux) PLANNER="linux" ;; \
+  *) echo "Unsupported kernel: $KERNEL" && exit 1 ;; \
+  esac \  
 && ARCH=$(uname -m) \
 && case "$ARCH" in \
   x86_64) ARCH="x86_64-$KERNEL" ;; \
@@ -23,7 +28,7 @@ https://install.determinate.systems/nix/tag/"${DETERMINATE_SYSTEMS}" \
 --output nix-installer \
 && chmod -v +x nix-installer \
 && ./nix-installer \
-    install "$KERNEL" \
+    install "$PLANNER" \
     --no-confirm \
     --logger pretty \
     --diagnostic-endpoint="" \
