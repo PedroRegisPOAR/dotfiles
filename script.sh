@@ -12,7 +12,7 @@ DETERMINATE_SYSTEMS="v3.1.1" \
   Darwin) PLANNER="macos" ;; \
   Linux) PLANNER="linux" ;; \
   *) echo "Unsupported kernel: $KERNEL" && exit 1 ;; \
-  esac \  
+  esac \
 && ARCH=$(uname -m) \
 && case "$ARCH" in \
   x86_64) ARCH="x86_64-$KERNEL" ;; \
