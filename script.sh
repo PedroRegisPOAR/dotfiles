@@ -9,8 +9,8 @@ DETERMINATE_SYSTEMS="v3.1.1" \
   *) echo "Unsupported kernel: $KERNEL" && exit 1 ;; \
   esac \
 && case "$KERNEL" in \
-  Darwin) PLANNER="macos" ;; \
-  Linux) PLANNER="linux" ;; \
+  darwin) PLANNER="macos" ;; \
+  linux) PLANNER="linux" ;; \
   *) echo "Unsupported kernel: $KERNEL" && exit 1 ;; \
   esac \
 && ARCH=$(uname -m) \
