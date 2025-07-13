@@ -28,12 +28,14 @@ https://install.determinate.systems/nix/tag/"${DETERMINATE_SYSTEMS}" \
 --output nix-installer \
 && chmod -v +x nix-installer \
 && ./nix-installer \
-    install "$PLANNER" \
+    add \
+    "$PLANNER" \
     --no-confirm \
     --logger pretty \
     --diagnostic-endpoint="" \
     --nix-package-url https://releases.nixos.org/nix/nix-"${NIX_VERSION}"/nix-"${NIX_VERSION}"-"${ARCH}".tar.xz \
 && . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh \
+&& sudo -i nix flake --version \
 && nix flake --version \
 && rm -v nix-installer \
 && sudo -i nix registry pin nixpkgs github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
