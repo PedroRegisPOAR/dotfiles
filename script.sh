@@ -42,7 +42,7 @@ https://install.determinate.systems/nix/tag/"${DETERMINATE_SYSTEMS}" \
 && sudo -i nix run nixpkgs#hello \
 && sudo -i nix profile install nixpkgs#hello \
 && sudo -i hello \
-&& nix build --no-link --print-out-paths nixpkgs#pkgsStatic.hello \
+&& sudo -i nix build --no-link --print-out-paths nixpkgs#pkgsStatic.hello \
 && nix registry pin nixpkgs github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
 && nix run nixpkgs#nix-info -- --markdown \
 && nix flake metadata nixpkgs \
