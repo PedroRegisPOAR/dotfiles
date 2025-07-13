@@ -28,7 +28,7 @@ https://install.determinate.systems/nix/tag/"${DETERMINATE_SYSTEMS}" \
 --output nix-installer \
 && chmod -v +x nix-installer \
 && ./nix-installer \
-    add \
+    install \
     "$PLANNER" \
     --no-confirm \
     --logger pretty \
