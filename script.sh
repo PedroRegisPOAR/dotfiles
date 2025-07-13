@@ -1,6 +1,6 @@
 !#/bin/sh
 
-DETERMINATE_SYSTEMS="v3.1.1" \
+DETERMINATE_SYSTEMS="v3.8.2" \
 && NIX_VERSION="2.30.1" \
 && KERNEL=$(uname) \
 && case "$KERNEL" in \
