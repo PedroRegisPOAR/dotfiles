@@ -23,7 +23,7 @@ https://install.determinate.systems/nix/tag/"${DETERMINATE_SYSTEMS}" \
 --output nix-installer \
 && chmod -v +x nix-installer \
 && ./nix-installer \
-    install linux \
+    install "$KERNEL" \
     --no-confirm \
     --logger pretty \
     --diagnostic-endpoint="" \
