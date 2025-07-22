@@ -13,6 +13,7 @@
     #blender
     #brave
     dbeaver-bin # dbeaver
+    redisinsight
     # discord
     #gimp
     gitkraken
@@ -367,6 +368,8 @@
     # shabnam-fonts
     # vazir-code-font
 
+    julia-mono
+    nerd-fonts.fira-code
 
     # New sorted
     #
@@ -386,155 +389,157 @@
     # tamsyn
     # tamzen
     # ucs-fonts
-    agave
-    aileron
-    anonymousPro
-    ark-pixel-font
-    arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
-    atkinson-hyperlegible
-    aurulent-sans
-    awesome
-    bakoma_ttf
-    bqn386
-    camingo-code
-    cantarell-fonts
-    cascadia-code
-    clearlyU
-    cm_unicode
-    comfortaa
-    comic-relief
-    corefonts
-    cozette
-    dejavu_fonts
-    dosemu_fonts
-    emacs-all-the-icons-fonts
-    emacsPackages.unicode-fonts
-    emojione
-    fantasque-sans-mono
-    fira
-    fira-code
-    fira-code-symbols
-    fira-mono
-    font-awesome
-    font-awesome_4
-    font-awesome_4
-    font-awesome_5
-    freefont_ttf
-    gentium
-    go-font
-    gyre-fonts
-    hackgen-font
-    hackgen-nf-font
-    hannom
-    hasklig
-    helvetica-neue-lt-std
-    hermit
-    ibm-plex
-    icu76
-    inter
-    iosevka
-    iosevka-comfy.comfy
-    iosevka-comfy.comfy-motion
-    iosevka-comfy.comfy-wide
-    iosevka-comfy.comfy-wide-motion
-    ipaexfont
-    ipafont
-    jetbrains-mono
-    joypixels
-    julia-mono
-    last-resort
-    lato
-    liberation_ttf
-    libertine
-    libre-caslon
-    lmmath
-    lmodern
-    maple-mono.NF
-    maple-mono.NF-CN # Old named as: maple-mono-SC-NF
-    maple-mono.NormalNL-TTF-AutoHint # This maple-mono font package have 44 fonts
-    material-design-icons
-    material-icons
-    meslo-lg
-    meslo-lgs-nf
-    monaspace
-    monoid
-    mononoki
-    montserrat
-    mplus-outline-fonts.githubRelease
-    mro-unicode
-    nerd-fonts.fira-code # Old named as fira-code-nerdfont
-    nerd-fonts.inconsolata # Old named as inconsolata
-    nerd-fonts.terminess-ttf # Old named as terminus-nerdfont
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    noto-fonts-emoji
-    noto-fonts-extra
-    noto-fonts-lgc-plus
-    noto-fonts-monochrome-emoji
-    oldstandard
-    open-fonts
-    openmoji-color
-    openttd-ttf
-    oxygenfonts
-    paratype-pt-sans
-    powerline
-    powerline-fonts
-    recursive
-    redhat-official-fonts
-    rounded-mgenplus
-    sarasa-gothic
-    scientifica
-    shabnam-fonts
-    sketchybar-app-font
-    source-code-pro
-    source-han-mono
-    source-han-sans
-    source-han-sans-japanese
-    source-han-sans-korean
-    source-han-sans-simplified-chinese
-    source-han-sans-traditional-chinese
-    source-han-sans-vf-ttf
-    source-han-serif
-    source-han-serif-vf-ttf
-    source-sans
-    stix-otf
-    stix-two
-    sudo-font
-    symbola
-    terminus_font
-    terminus_font_ttf
-    textfonts
-    ttf_bitstream_vera
-    ttf-indic
-    twemoji-color-font
-    twitter-color-emoji
-    ubuntu_font_family
-    udev-gothic
-    udev-gothic-nf
-    uiua386
-    ultimate-oldschool-pc-font-pack
-    undefined-medium
-    unicode-emoji
-    unidings
-    unifont_upper
-    unscii
-    uw-ttyp0
-    vazir-code-font
-    vazir-fonts
-    victor-mono
-    vistafonts
-    vistafonts-chs
-    wqy_microhei
-    wqy_zenhei
-    xkcd-font
-    xmoji
-    xorg.fontbitstream100dpi
-    xorg.fontbitstream75dpi
-    xorg.fontbitstreamtype1
-    xorg.xbitmaps
-    zpix-pixel-font
+
+    #
+    # agave
+    # aileron
+    # anonymousPro
+    # ark-pixel-font
+    # arkpandora_ttf # Font, metrically identical to Arial and Times New Roman
+    # atkinson-hyperlegible
+    # aurulent-sans
+    # awesome
+    # bakoma_ttf
+    # bqn386
+    # camingo-code
+    # cantarell-fonts
+    # cascadia-code
+    # clearlyU
+    # cm_unicode
+    # comfortaa
+    # comic-relief
+    # corefonts
+    # cozette
+    # dejavu_fonts
+    # dosemu_fonts
+    # emacs-all-the-icons-fonts
+    # emacsPackages.unicode-fonts
+    # emojione
+    # fantasque-sans-mono
+    # fira
+    # fira-code
+    # fira-code-symbols
+    # fira-mono
+    # font-awesome
+    # font-awesome_4
+    # font-awesome_4
+    # font-awesome_5
+    # freefont_ttf
+    # gentium
+    # go-font
+    # gyre-fonts
+    # hackgen-font
+    # hackgen-nf-font
+    # hannom
+    # hasklig
+    # helvetica-neue-lt-std
+    # hermit
+    # ibm-plex
+    # icu76
+    # inter
+    # iosevka
+    # iosevka-comfy.comfy
+    # iosevka-comfy.comfy-motion
+    # iosevka-comfy.comfy-wide
+    # iosevka-comfy.comfy-wide-motion
+    # ipaexfont
+    # ipafont
+    # jetbrains-mono
+    # joypixels
+    # julia-mono
+    # last-resort
+    # lato
+    # liberation_ttf
+    # libertine
+    # libre-caslon
+    # lmmath
+    # lmodern
+    # maple-mono.NF
+    # maple-mono.NF-CN # Old named as: maple-mono-SC-NF
+    # maple-mono.NormalNL-TTF-AutoHint # This maple-mono font package have 44 fonts
+    # material-design-icons
+    # material-icons
+    # meslo-lg
+    # meslo-lgs-nf
+    # monaspace
+    # monoid
+    # mononoki
+    # montserrat
+    # mplus-outline-fonts.githubRelease
+    # mro-unicode
+    # nerd-fonts.fira-code # Old named as fira-code-nerdfont
+    # nerd-fonts.inconsolata # Old named as inconsolata
+    # nerd-fonts.terminess-ttf # Old named as terminus-nerdfont
+    # noto-fonts
+    # noto-fonts-cjk-sans
+    # noto-fonts-cjk-serif
+    # noto-fonts-color-emoji
+    # noto-fonts-emoji
+    # noto-fonts-extra
+    # noto-fonts-lgc-plus
+    # noto-fonts-monochrome-emoji
+    # oldstandard
+    # open-fonts
+    # openmoji-color
+    # openttd-ttf
+    # oxygenfonts
+    # paratype-pt-sans
+    # powerline
+    # powerline-fonts
+    # recursive
+    # redhat-official-fonts
+    # rounded-mgenplus
+    # sarasa-gothic
+    # scientifica
+    # shabnam-fonts
+    # sketchybar-app-font
+    # source-code-pro
+    # source-han-mono
+    # source-han-sans
+    # source-han-sans-japanese
+    # source-han-sans-korean
+    # source-han-sans-simplified-chinese
+    # source-han-sans-traditional-chinese
+    # source-han-sans-vf-ttf
+    # source-han-serif
+    # source-han-serif-vf-ttf
+    # source-sans
+    # stix-otf
+    # stix-two
+    # sudo-font
+    # symbola
+    # terminus_font
+    # terminus_font_ttf
+    # textfonts
+    # ttf_bitstream_vera
+    # ttf-indic
+    # twemoji-color-font
+    # twitter-color-emoji
+    # ubuntu_font_family
+    # udev-gothic
+    # udev-gothic-nf
+    # uiua386
+    # ultimate-oldschool-pc-font-pack
+    # undefined-medium
+    # unicode-emoji
+    # unidings
+    # unifont_upper
+    # unscii
+    # uw-ttyp0
+    # vazir-code-font
+    # vazir-fonts
+    # victor-mono
+    # vistafonts
+    # vistafonts-chs
+    # wqy_microhei
+    # wqy_zenhei
+    # xkcd-font
+    # xmoji
+    # xorg.fontbitstream100dpi
+    # xorg.fontbitstream75dpi
+    # xorg.fontbitstreamtype1
+    # xorg.xbitmaps
+    # zpix-pixel-font
 
     # TODO: how to test it?
     # zsh-nix-shell
@@ -2199,7 +2204,8 @@
         # theFont = "'FiraCode Nerd Font Mono', 'Font Awesome 6 Free', 'Noto Color Emoji', 'JuliaMono', monospace";
         # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
         # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
-        theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
+        # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
+        theFont = "'FiraCode Nerd Font', 'JuliaMono'";
         # 'OpenMoji Color',
 
       in

@@ -171,6 +171,7 @@
           coreutils
           curl
           gnumake
+          nixpkgs-fmt
           patchelf
           poetry
           python3Full

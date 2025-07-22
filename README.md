@@ -27,6 +27,7 @@ nixpkgs#coreutils \
 nixpkgs#git \
 nixpkgs#home-manager \
 nixpkgs#nix \
+nixpkgs#nettools \
 --command \
 bash \
 -c \
@@ -34,7 +35,9 @@ bash \
 export NIXPKGS_ALLOW_UNFREE=1
 export NIX_CONFIG="extra-experimental-features = nix-command flakes auto-allocate-uids"
 
-test -d /home/"$USER"/.config/nixpkgs && rm -frv /home/"$USER"/.config/nixpkgs/
+test -d "$HOME"/.config/nixpkgs && rm -frv "$HOME"/.config/nixpkgs/
+[ -h "$HOME"/.zshenv ] && [ ! -f "$HOME"/.zshenv ] && [ ! -d "$HOME"/.zshenv] && rm -f -- "$HOME"/.zshenv
+
 nix \
 flake \
 clone \
@@ -44,8 +47,8 @@ github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
 'github:PedroRegisPOAR/dotfiles' \
 --dest /home/"$USER"/.config/nixpkgs
 
-home-manager switch --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
-# home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#pedro-pedro-G3
+# home-manager switch --option download-buffer-size 671088640 --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
+home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#pedro-pedro-G3
 '
 ```
 Refs.:
