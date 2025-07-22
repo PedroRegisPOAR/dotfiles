@@ -366,7 +366,8 @@
     # shabnam-fonts
     # vazir-code-font
 
-    julia-mono
+    # julia-mono
+    # fc-cache -rfv && hms && hms && gnome-terminal --zoom=2 --tab -- "$SHELL" -c "cd ~/.config/nixpkgs; exec $SHELL"
     nerd-fonts.fira-code
     meslo-lgs-nf
 
@@ -1704,8 +1705,10 @@
         impure_msg = "[impure](bold red)";
         pure_msg = "[pure](bold green)";
         style = "bold blue";
-        # symbol = " ";
-        symbol = " ";
+        symbol = " ";
+        # detect_extensions = [ "nix" ];
+        # detect_files = [ "flake.nix" "flake.lock" ];
+        # detect_folders = [ ];
       };
       nodejs = {
         format = "[$symbol($version )]($style)";
