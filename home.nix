@@ -9,33 +9,38 @@
 
   home.packages = with pkgs; [
     # Graphical packages
-    #anydesk
-    #blender
-    #brave
-    dbeaver-bin # dbeaver
-    redisinsight
+    # anydesk
+    # blender
+    # brave
     # discord
-    #gimp
-    gitkraken
-    google-chrome
-    #inkscape
-    insomnia
-    postman
-    jetbrains.pycharm-community
-    keepassxc
-    kdePackages.kolourpaint
+    # frida-tools
+    # ghidra
+    # gimp
+    # ida-free
+    # inkscape
+    # insomnia
+    # jadx
+    # kwave # TODO: it opens but when saving the audio file it errors
     # libreoffice
     # obsidian
-    kdePackages.okular
-    peek
-    # kwave # TODO: it opens but when saving the audio file it errors
-    # postman
-    qbittorrent
-    wkhtmltopdf
+    # rustdesk
+    # spotify
+    # tdesktop
+    # virt-manager
+    # vscodium
 
-    # jadx
-    # ida-free
-    # frida-tools
+    dbeaver-bin
+    gitkraken
+    google-chrome
+    jetbrains.pycharm-community
+    kdePackages.kolourpaint
+    kdePackages.okular
+    keepassxc
+    peek
+    postman
+    qbittorrent
+    redisinsight
+    vlc
 
     # slack
     # (slack.overrideAttrs (old: {
@@ -51,20 +56,11 @@
     # xdg-desktop-portal-wlr
     # xdg-desktop-portal-gtk
 
-    # spotify
-    # tdesktop
-    #virt-manager
-    vlc
-    # vscodium
-    # ghidra
-    # rustdesk
-    # tts
-    # ngrok # mirror problem
-
     xorg.xclock
     xclip
     xsel
     # vncdo
+
     yt-dlp # yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --restrict-filenames --no-playlist --output "%(title)s.%(ext)s" https://www.youtube.com/watch\?v\=ID
 
     # sudo $(which lshw) -C display
@@ -104,7 +100,7 @@
     # it must exists in  ls -alh "$HOME"/.nix-profile/bin pointing to
     # /nix/store/*-home-manager-path/bin/nix
     nix
-    # nixVersions.nix_2_10
+    # nixVersions.nix_2_28
 
     # pciutils # lspci and others
     # coreboot-utils
@@ -164,6 +160,9 @@
     xdotool
     # spice-gtk
     # virt-viewer
+    # tts
+    # wkhtmltopdf
+    # ngrok # mirror problem    
     mypy
 
     nodejs
@@ -188,7 +187,6 @@
     fontconfig
     # fontforge-gtk # TODO: testar fontes usando esse programa
     # pango
-
 
     # arphic-ukai
     # arphic-uming
@@ -370,6 +368,7 @@
 
     julia-mono
     nerd-fonts.fira-code
+    meslo-lgs-nf
 
     # New sorted
     #
@@ -416,12 +415,12 @@
     # emacsPackages.unicode-fonts
     # emojione
     # fantasque-sans-mono
+    ########
     # fira
     # fira-code
     # fira-code-symbols
     # fira-mono
     # font-awesome
-    # font-awesome_4
     # font-awesome_4
     # font-awesome_5
     # freefont_ttf
@@ -507,7 +506,7 @@
     # stix-otf
     # stix-two
     # sudo-font
-    # symbola
+    # # symbola
     # terminus_font
     # terminus_font_ttf
     # textfonts
@@ -2205,7 +2204,7 @@
         # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
         # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
         # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
-        theFont = "'FiraCode Nerd Font', 'JuliaMono'";
+        theFont = "'FiraCode Nerd Font', 'JuliaMono', 'MesloLGS NF'";
         # 'OpenMoji Color',
 
       in
