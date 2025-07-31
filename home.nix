@@ -2207,7 +2207,7 @@
         # theFont = "'FiraCode Nerd Font Mono', 'MesloLGS NF', 'Apple Color Emoji', 'JuliaMono', monospace";
         # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'Lucida Console', 'JuliaMono', monospace";
         # theFont = "'MesloLGS Nerd Font Mono', 'MesloLGS NF', 'monospace'";
-        theFont = "'FiraCode Nerd Font', 'JuliaMono', 'MesloLGS NF'";
+        theFont = "'FiraCode Nerd Font', 'MesloLGS NF'";
         # 'OpenMoji Color',
 
       in
