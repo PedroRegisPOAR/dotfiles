@@ -18,7 +18,7 @@
     # gimp
     # ida-free
     # inkscape
-    # insomnia
+    insomnia
     # jadx
     # kwave # TODO: it opens but when saving the audio file it errors
     # libreoffice
@@ -724,6 +724,53 @@
       writeScriptBin "nfm-j" ''
         #! ${pkgs.runtimeShell} -e
         nix flake metadata $1 --json | jq -r '.url'
+      ''
+    )
+
+    (
+      writeScriptBin "ngc" ''
+        find \
+          ~ \( \
+               -type d -wholename '.local/share/containers/storage' \
+            -o -type d -name '.git' \
+            -o -type d -name 'node_modules' \
+          \) \
+          -prune \
+          -o \( \
+            -type d -name '.profiles' \
+            -o -name 'result' \
+            -o -name 'result-*' \
+            -o -name '*.img' \
+            -o -name '*.qcow2*' \
+            -o -name '*.iso' \
+            -o -name '.direnv' \
+            -o -name '.nixos-test-history' \
+          \) \
+          -exec echo {} + | tr ' ' '\n'
+
+        find \
+          ~ \( \
+               -type d -name 'venv' \
+            -o -type d -name '.venv' \
+            -o -type d -name 'node_modules' \
+          \) \
+          -exec echo {} + | tr ' ' '\n'
+     
+        # -exec rm -frv {} +
+
+        nix \
+        store \
+        gc \
+        --verbose \
+        --option keep-build-log false \
+        --option keep-derivations false \
+        --option keep-env-derivations false \
+        --option keep-failed false \
+        --option keep-going false \
+        --option keep-outputs false \
+        && nix-collect-garbage --delete-old \
+        && nix store optimise --verbose \
+        && du -sh /nix
       ''
     )
 

@@ -353,12 +353,14 @@ ls -l /var/lib/locales/supported.d/
 echo "Some text with accents: é ç ñ" | iconv -f UTF-8 -t ISO-8859-1 > file.txt
 file -i file.txt
 iconv -f ISO-8859-1 -t UTF-8 file.txt
+file -i file.txt
 ```
 
 ```bash
 echo -e "Line 1\r\nLine 2 with é" | iconv -f UTF-8 -t ISO-8859-1 > win_encoded.txt
 file -i win_encoded.txt
 iconv -f ISO-8859-1 -t UTF-8 win_encoded.txt
+file -i win_encoded.txt
 ```
 
 TODO: unix2dos
