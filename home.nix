@@ -728,6 +728,24 @@
     )
 
     (
+      /*
+        docker system df
+        docker builder prune --all --force
+        docker image prune --filter="dangling=true" --force
+        docker image prune --force
+        docker container prune --force
+        docker system prune --force
+        docker volume prune --all --force
+
+
+        du -cksh /* 2> /dev/null | sort -rh | head -n 15
+        du -cksh "$HOME"/.cache/* 2> /dev/null | sort -rh | head -n 15
+
+        du -cksh /nix
+        du -cksh ~/.cache
+        du -cksh /var /tmp
+        sudo du -cksh /var /tmp
+      */
       writeScriptBin "ngc" ''
         find \
           ~ \( \

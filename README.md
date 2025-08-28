@@ -6,7 +6,7 @@
 # It is broken in bash
 # test -n "${USER+1}" || { echo 'The variable USER is not set!' && return }
 
-curl -L https://hydra.nixos.org/build/297111184/download-by-type/file/binary-dist > nix \
+(test -f nix || curl -L https://hydra.nixos.org/build/297111184/download-by-type/file/binary-dist > nix) \
 && chmod +x nix \
 && ./nix --version
 
