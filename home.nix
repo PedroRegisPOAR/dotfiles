@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, pkgsPy389, ... }:
+{ pkgs, nixpkgs, pkgsPy389, pkgsPy3921, ... }:
 
 {
 
@@ -171,9 +171,13 @@
     bun
 
     # Legacy python 3.8.9 and pipenv
-    pkgsPy389.python3
-    pkgsPy389.pipenv
-    pkgsPy389.stdenv.cc.cc.lib
+    # pkgsPy389.python3
+    # pkgsPy389.pipenv
+    # pkgsPy389.stdenv.cc.cc.lib
+
+    pkgsPy3921.python39
+    pkgsPy3921.pipenv
+    pkgsPy3921.stdenv.cc.cc.lib
 
     uv
 

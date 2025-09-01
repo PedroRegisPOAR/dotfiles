@@ -64,6 +64,7 @@
     home-manager.url = "github:nix-community/home-manager";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgsPy389.url = "github:NixOS/nixpkgs/b0f0b5c6c021ebafbd322899aa9a54b87d75a313";
+    nixpkgsPy3921.url = "github:NixOS/nixpkgs/50ab793786d9de88ee30ec4e4c24fb4236fc2674";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -71,6 +72,7 @@
     allAttrs@{ self
     , nixpkgs
     , nixpkgsPy389
+    , nixpkgsPy3921
     , home-manager
     , ...
     }:
@@ -87,6 +89,10 @@
       };
 
       pkgsPy389 = import nixpkgsPy389 {
+        system = "x86_64-linux";
+      };
+
+      pkgsPy3921 = import nixpkgsPy3921 {
         system = "x86_64-linux";
       };
 
@@ -127,6 +133,7 @@
           extraSpecialArgs = {
             nixpkgs = nixpkgs;
             pkgsPy389 = pkgsPy389;
+            pkgsPy3921 = pkgsPy3921;
           };
         };
 
@@ -191,13 +198,11 @@
         ];
 
         shellHook = ''
-
           test -d .profiles || mkdir -v .profiles
           test -L .profiles/dev \
           || nix develop .# --profile .profiles/dev --command true
           test -L .profiles/dev-shell-default \
           || nix build $(nix eval --impure --raw .#devShells.x86_64-linux.default.drvPath) --out-link .profiles/dev-shell-default
-
         '';
       };
     };
