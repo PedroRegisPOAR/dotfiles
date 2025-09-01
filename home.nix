@@ -630,7 +630,6 @@
       ''
     )
 
-
     (
       writeScriptBin "gp" ''
         #! ${pkgs.runtimeShell} -e
@@ -752,6 +751,8 @@
                -type d -wholename '.local/share/containers/storage' \
             -o -type d -name '.git' \
             -o -type d -name 'node_modules' \
+            -o -type d -name 'venv' \
+            -o -type d -name '.venv' \            
           \) \
           -prune \
           -o \( \
@@ -788,7 +789,7 @@
         --option keep-outputs false \
         && nix-collect-garbage --delete-old \
         && nix store optimise --verbose \
-        && du -sh /nix
+        && du -cksh /nix
       ''
     )
 
