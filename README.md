@@ -36,7 +36,7 @@ export NIXPKGS_ALLOW_UNFREE=1
 export NIX_CONFIG="extra-experimental-features = nix-command flakes auto-allocate-uids"
 
 test -d "$HOME"/.config/nixpkgs && rm -frv "$HOME"/.config/nixpkgs/
-[ -h "$HOME"/.zshenv ] && [ ! -f "$HOME"/.zshenv ] && [ ! -d "$HOME"/.zshenv] && rm -f -- "$HOME"/.zshenv
+[ -h "$HOME"/.zshenv ] && [ ! -f "$HOME"/.zshenv ] && [ ! -d "$HOME"/.zshenv ] && rm -fv -- "$HOME"/.zshenv
 
 nix \
 flake \
