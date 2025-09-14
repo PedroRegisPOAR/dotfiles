@@ -58,6 +58,14 @@
     lock \
     --override-input nixpkgs 'github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd' \
     --override-input home-manager 'github:nix-community/home-manager/83665c39fa688bd6a1f7c43cf7997a70f6a109f9'
+
+
+    ## TODO
+    nix \
+    flake \
+    lock \
+    --override-input nixpkgs 'github:NixOS/nixpkgs/9a094440e02a699be5c57453a092a8baf569bdad' \
+    --override-input home-manager 'github:nix-community/home-manager/f21d9167782c086a33ad53e2311854a8f13c281e'
   */
   inputs = {
     # Specify the source of Home Manager and Nixpkgs
