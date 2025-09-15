@@ -53,14 +53,13 @@
     --override-input home-manager 'github:nix-community/home-manager/f6af7280a3390e65c2ad8fd059cdc303426cbd59'
 
 
+    # 25.05
     nix \
     flake \
     lock \
     --override-input nixpkgs 'github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd' \
     --override-input home-manager 'github:nix-community/home-manager/83665c39fa688bd6a1f7c43cf7997a70f6a109f9'
 
-
-    ## TODO
     nix \
     flake \
     lock \
