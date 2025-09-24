@@ -52,8 +52,7 @@ nixpkgs#nix \
 nixpkgs#nettools \
 --command \
 bash \
--c \
-'
+<<'COMMANDS'
 export NIXPKGS_ALLOW_UNFREE=1
 export NIX_CONFIG="extra-experimental-features = nix-command flakes auto-allocate-uids"
 
@@ -71,7 +70,7 @@ github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
 
 # home-manager switch --option download-buffer-size 671088640 --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
 home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#$HM_ATTR
-'
+COMMANDS
 ```
 Refs.:
 - https://unix.stackexchange.com/a/654575
