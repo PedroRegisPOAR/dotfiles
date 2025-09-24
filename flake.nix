@@ -174,6 +174,11 @@
           system = "x86_64-linux";
           username = "pedro";
         };
+
+        bob = f {
+          system = "aarch64-linux";
+          username = "bob";
+        };
       };
 
       # nix fmt
