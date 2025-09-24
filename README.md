@@ -12,7 +12,7 @@ case "$ARCH" in
         ;;
     aarch64)
         BUILD_ID="297111173"
-        EXPECTED_SHA256SUM=a559d9c4c144859251ab5441cf285f1c38861e4bb46509e38229474368286467
+        EXPECTED_SHA256SUM=524d6ac5fd5acb6129b948b8409e057daac6cadb0a0433c8ace4de7b61c748a1
         ;;
     *)
         echo "Error: Unsupported architecture 'ARCH'" >&2
