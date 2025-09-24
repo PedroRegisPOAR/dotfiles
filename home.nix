@@ -31,8 +31,8 @@
     # virt-manager
     # vscodium
 
-    dbeaver-bin
-    gitkraken
+    # dbeaver-bin
+    # gitkraken
     # google-chrome
     # jetbrains.pycharm-community
     kdePackages.kolourpaint
