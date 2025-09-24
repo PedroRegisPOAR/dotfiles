@@ -18,7 +18,9 @@
     # gimp
     # ida-free
     # inkscape
-    insomnia
+    
+    # insomnia
+    
     # jadx
     # kwave # TODO: it opens but when saving the audio file it errors
     # libreoffice
@@ -31,7 +33,7 @@
 
     dbeaver-bin
     gitkraken
-    google-chrome
+    # google-chrome
     # jetbrains.pycharm-community
     kdePackages.kolourpaint
     kdePackages.okular
