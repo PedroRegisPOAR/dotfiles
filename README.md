@@ -1,15 +1,34 @@
 # dotfiles
 
 
-1)
+0)
 ```bash
-# It is broken in bash
-# test -n "${USER+1}" || { echo 'The variable USER is not set!' && return }
+ARCH=$(uname -m)
 
-(test -f nix || curl -L https://hydra.nixos.org/build/297111184/download-by-type/file/binary-dist > nix) \
+case "$ARCH" in
+    x86_64)
+        BUILD_ID="297111184"
+        EXPECTED_SHA256SUM=7838348c0e560855921cfa97051161bd63e29ee7ef4111eedc77228e91772958
+        ;;
+    aarch64)
+        BUILD_ID="297111173"
+        EXPECTED_SHA256SUM=a559d9c4c144859251ab5441cf285f1c38861e4bb46509e38229474368286467
+        ;;
+    *)
+        echo "Error: Unsupported architecture 'ARCH'" >&2
+        exit 1
+        ;;
+esac
+
+(test -f nix || curl -L https://hydra.nixos.org/build/"$BUILD_ID"/download-by-type/file/binary-dist > nix) \
+&& echo "$EXPECTED_SHA256SUM"'  'nix \
+| sha256sum -c \
 && chmod +x nix \
 && ./nix --version
+```
 
+1)
+```bash
 sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 
 ./nix \

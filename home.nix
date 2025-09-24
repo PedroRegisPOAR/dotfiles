@@ -95,7 +95,7 @@
     pfetch
     cmatrix
 
-    # TODO: It can "work" by chance if nix is instaled in an imperative way.
+    # TODO: It can "work" by chance if nix is instaled in an imperative way.fng
     # Just enabling it is not adding it to "$HOME"/.nix-profile/bin
     # it must exists in  ls -alh "$HOME"/.nix-profile/bin pointing to
     # /nix/store/*-home-manager-path/bin/nix
@@ -409,7 +409,7 @@
             -o -type d -name '.git' \
             -o -type d -name 'node_modules' \
             -o -type d -name 'venv' \
-            -o -type d -name '.venv' \            
+            -o -type d -name '.venv' \
           \) \
           -prune \
           -o \( \
@@ -422,7 +422,7 @@
             -o -name '.direnv' \
             -o -name '.nixos-test-history' \
           \) \
-          -exec echo {} + | tr ' ' '\n'
+          -exec rm -frv {} + | tr ' ' '\n'
 
         find \
           ~ \( \
@@ -430,7 +430,7 @@
             -o -type d -name '.venv' \
             -o -type d -name 'node_modules' \
           \) \
-          -exec echo {} + | tr ' ' '\n'
+          -exec rm -frv {} + | tr ' ' '\n'
      
         # -exec rm -frv {} +
 
