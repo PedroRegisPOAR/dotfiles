@@ -9,10 +9,12 @@ case "$ARCH" in
     x86_64)
         BUILD_ID="297111184"
         EXPECTED_SHA256SUM=7838348c0e560855921cfa97051161bd63e29ee7ef4111eedc77228e91772958
+         HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
         BUILD_ID="297111173"
         EXPECTED_SHA256SUM=524d6ac5fd5acb6129b948b8409e057daac6cadb0a0433c8ace4de7b61c748a1
+        HM_ATTR=bob
         ;;
     *)
         echo "Error: Unsupported architecture 'ARCH'" >&2
@@ -38,6 +40,7 @@ shell \
 --ignore-environment \
 --keep HOME \
 --keep USER \
+--keep HM_ATTR \
 --override-flake \
 nixpkgs \
 github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
@@ -67,7 +70,7 @@ github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
 --dest "$HOME"/.config/nixpkgs
 
 # home-manager switch --option download-buffer-size 671088640 --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
-home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#pedro-pedro-G3
+home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#$HM_ATTR
 '
 ```
 Refs.:
