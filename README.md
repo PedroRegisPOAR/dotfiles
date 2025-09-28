@@ -9,7 +9,7 @@ case "$ARCH" in
     x86_64)
         BUILD_ID="297111184"
         EXPECTED_SHA256SUM=7838348c0e560855921cfa97051161bd63e29ee7ef4111eedc77228e91772958
-         HM_ATTR=pedro-pedro-G3
+        HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
         BUILD_ID="297111173"
