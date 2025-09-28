@@ -1,5 +1,16 @@
 # dotfiles
 
+0.0) 
+```bash
+BUILD_ID="$(
+hydra-check \
+--arch x86_64-linux \
+--channel nix maintenance-2.30/buildStatic.nix-cli \
+--json \
+| jq -r '."maintenance-2.30/buildStatic.nix-cli.$(uname -m)-linux".[0].build_id'
+)"
+echo $BUILD_ID
+```
 
 0)
 ```bash
