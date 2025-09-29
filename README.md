@@ -1,29 +1,20 @@
 # dotfiles
 
-0.0) 
-```bash
-BUILD_ID="$(
-hydra-check \
---arch x86_64-linux \
---channel nix maintenance-2.30/buildStatic.nix-cli \
---json \
-| jq -r '."maintenance-2.30/buildStatic.nix-cli.$(uname -m)-linux".[0].build_id'
-)"
-echo $BUILD_ID
-```
 
 0)
 ```bash
+test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
+
 ARCH=$(uname -m)
 
 case "$ARCH" in
     x86_64)
-        BUILD_ID="297111184"
+        BUILD_ID="308296217"
         EXPECTED_SHA256SUM=7838348c0e560855921cfa97051161bd63e29ee7ef4111eedc77228e91772958
         HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
-        BUILD_ID="297111173"
+        BUILD_ID="308399262"
         EXPECTED_SHA256SUM=524d6ac5fd5acb6129b948b8409e057daac6cadb0a0433c8ace4de7b61c748a1
         HM_ATTR=bob
         ;;
