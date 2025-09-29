@@ -10,12 +10,12 @@ ARCH=$(uname -m)
 case "$ARCH" in
     x86_64)
         BUILD_ID="308296217"
-        EXPECTED_SHA256SUM=7838348c0e560855921cfa97051161bd63e29ee7ef4111eedc77228e91772958
+        EXPECTED_SHA256SUM=18710ed342eb80e8417e9bb87ce5b63e54ec4b3daeed6dc068c3c0adb6bebfe5
         HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
         BUILD_ID="308399262"
-        EXPECTED_SHA256SUM=524d6ac5fd5acb6129b948b8409e057daac6cadb0a0433c8ace4de7b61c748a1
+        EXPECTED_SHA256SUM=869a20597a27e32fdc2c9b9d7a00e05eb2483c7485dea0f2fe57bffc2c704e06
         HM_ATTR=bob
         ;;
     *)
