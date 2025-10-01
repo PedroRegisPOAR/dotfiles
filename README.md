@@ -1,6 +1,10 @@
 # dotfiles
 
 
+```bash
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh
+```
+
 0)
 ```bash
 test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
