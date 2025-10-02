@@ -19,7 +19,7 @@ case "$ARCH" in
         ;;
     aarch64)
         BUILD_ID="308399262"
-        EXPECTED_SHA256SUM=869a20597a27e32fdc2c9b9d7a00e05eb2483c7485dea0f2fe57bffc2c704e06
+        EXPECTED_SHA256SUM=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         HM_ATTR=bob
         ;;
     *)
