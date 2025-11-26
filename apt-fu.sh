@@ -10,3 +10,5 @@ echo 'If both are enable, disable one of them!' \
 && sudo systemctl is-enabled NetworkManager-wait-online.service \
 && sudo systemctl is-enabled systemd-networkd-wait-online.service \
 && sudo systemctl disable systemd-networkd.service
+
+sudo reboot
