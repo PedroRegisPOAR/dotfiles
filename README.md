@@ -1,5 +1,8 @@
 # dotfiles
 
+```bash
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
+```
 
 ```bash
 curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh
