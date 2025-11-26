@@ -25,11 +25,6 @@ esac
 && chmod +x nix \
 && ./nix --version
 
-
-systemctl is-enabled NetworkManager-wait-online.service \
-&& systemctl is-enabled systemd-networkd-wait-online.service \
-&& systemctl disable systemd-networkd.service
-
 echo "Start kvm stuff..." \
 && (getent group kvm || sudo groupadd kvm) \
 && sudo usermod --append --groups kvm "$USER" \
@@ -323,3 +318,9 @@ nix --version \
 && home-manager switch
 "
 '
+
+# 
+systemctl is-enabled NetworkManager-wait-online.service \
+&& systemctl is-enabled systemd-networkd-wait-online.service \
+&& systemctl disable systemd-networkd.service
+
