@@ -31,11 +31,6 @@ echo "Start kvm stuff..." \
 && echo "End kvm stuff!" \
 && (test -w /dev/kvm || sudo chown -v "$(id -u)":"$(id -g)" /dev/kvm) 
 
-#  --no-install-recommends --no-install-suggests
-sudo apt-get update --assume-yes \
-&& sudo apt-get install --assume-yes ubuntu-desktop
-sudo rm -frv /var/cache/apt/archives/*
-sudo apt-get autoremove
 echo '"$HOME"/.nix-profile/bin/zsh --login' >> "$HOME"/.bashrc
 
 ./nix --version \
@@ -318,9 +313,3 @@ nix --version \
 && home-manager switch
 "
 '
-
-# 
-systemctl is-enabled NetworkManager-wait-online.service \
-&& systemctl is-enabled systemd-networkd-wait-online.service \
-&& systemctl disable systemd-networkd.service
-
