@@ -46,7 +46,7 @@ shell \
 --keep USER \
 --override-flake \
 nixpkgs \
-github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
+github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4 \
 nixpkgs#bashInteractive \
 nixpkgs#coreutils \
 nixpkgs#file \
@@ -71,9 +71,9 @@ cat << 'EOF' > flake.nix
   description = "Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -213,8 +213,8 @@ sed -i 's/.*userName = ".*";/userName = "'"$USER"'";/' /home/"$USER"/.config/hom
 --option warn-dirty false \
 flake \
 lock \
---override-input nixpkgs github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
---override-input home-manager github:nix-community/home-manager/83665c39fa688bd6a1f7c43cf7997a70f6a109f9
+--override-input nixpkgs github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4 \
+--override-input home-manager github:nix-community/home-manager/f63d0fe9d81d36e5fc95497217a72e02b8b7bcab
 
 # Even removing all packages it still making home-manager break, why?
 "$OLD_PWD"/nix \
@@ -297,8 +297,8 @@ COMMANDS
 --extra-experimental-features flakes \
 --no-use-registries \
 shell \
-github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd#bashInteractive \
-github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd#home-manager \
+github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4#bashInteractive \
+github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4#home-manager \
 --command \
 bash \
 -c \
