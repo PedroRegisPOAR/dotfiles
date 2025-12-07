@@ -83,27 +83,41 @@ cat << 'EOF' > flake.nix
       userName = "vagrant";
       homeDirectory = "/home/${userName}";
 
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # system = "x86_64-linux";
+      # system = "aarch64-linux";
 
-      # overlays.default = nixpkgs.lib.composeManyExtensions [
-      #   (final: prev: {
-      #     fooBar = prev.hello;
-      #   })];
+      # pkgs = nixpkgs.legacyPackages.${system};
 
-      # pkgs = import nixpkgs {
-      #           inherit system;
-      #           overlays = [ self.overlays.default ];
-      #         };            
+      overlays.default = nixpkgs.lib.composeManyExtensions [
+        (final: prev: {
+          fooBar = prev.hello;
+          hms = final.writeScriptBin "hms" ''
+            #! ${final.runtimeShell} -e
+              nix \
+              build \
+              --no-link \
+              --print-build-logs \
+              --print-out-paths \
+              "$HOME"'/.config/home-manager#homeConfigurations.'"$(id -un)".activationPackage
+
+              home-manager switch --flake "$HOME/.config/home-manager"#"$(id -un)"
+          '';
+        })
+      ];
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ overlays.default ];
+      };
     in
     {
       formatter.${system} = pkgs.nixpkgs-fmt;
       homeConfigurations."${userName}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ({ pkgs, ... }:
+          # TODO: how find all passed things?? It was missing the config one.
+          ({ config, pkgs, ... }:
             {
-              home.stateVersion = "25.05";
+              home.stateVersion = "25.11";
               home.username = "${userName}";
               home.homeDirectory = "${homeDirectory}";
 
@@ -118,20 +132,17 @@ cat << 'EOF' > flake.nix
                 starship
 
                 hello
+                hello-unfree
                 nano
                 file
                 which
-                (writeScriptBin "hms" ''
-                    #! ${pkgs.runtimeShell} -e
-                      nix \
-                      build \
-                      --no-link \
-                      --print-build-logs \
-                      --print-out-paths \
-                      "$HOME"'/.config/home-manager#homeConfigurations.'"$(id -un)".activationPackage
 
-                      home-manager switch --flake "$HOME/.config/home-manager"#"$(id -un)"
-                '')
+                hms
+                fooBar
+              ];
+
+              nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+                "example-unfree-package"
               ];
 
               nix = {
@@ -142,7 +153,7 @@ cat << 'EOF' > flake.nix
                   experimental-features = nix-command flakes
                 '';
                 settings = {
-                  bash-prompt-prefix = "(nix:$name)\\040";
+                  bash-prompt-prefix = "(nix develop@$name)\\040";
                   keep-build-log = true;
                   keep-derivations = true;
                   keep-env-derivations = true;
@@ -158,7 +169,7 @@ cat << 'EOF' > flake.nix
               programs.zsh = {
                 enable = true;
                 enableCompletion = true;
-                dotDir = ".config/zsh";
+                dotDir = "${config.home.homeDirectory}";
                 autosuggestion.enable = true;
                 syntaxHighlighting.enable = true;
                 envExtra = ''
@@ -171,8 +182,8 @@ cat << 'EOF' > flake.nix
                 };
                 sessionVariables = {
                   # https://discourse.nixos.org/t/what-is-the-correct-way-to-set-nix-path-with-home-manager-on-ubuntu/29736
-                  NIX_PATH = "nixpkgs=${pkgs.path}";
-                  LANG = "en_US.utf8";
+                  NIX_PATH = "nixpkgs=${pkgs.path}"; # TODO: is this correct??
+                  LANG = "en_US.utf8"; # TODO: test it
                 };
                 oh-my-zsh = {
                   enable = true;
@@ -196,14 +207,55 @@ EOF
 
 test -f /home/"$USER"/.config/home-manager/flake.nix || echo 'not found flake.nix'
 
-sed -i 's/.*userName = ".*";/userName = "'"$USER"'";/' /home/"$USER"/.config/home-manager/flake.nix
-
 (git config init.defaultBranch \
 || git config --global init.defaultBranch main) \
 && (git config --global user.email || git config --global user.email "you@example.com") \
 && (git config --global user.name || git config --global user.name "Your Name") \
 && git init \
-&& git add .
+&& git add . \
+&& git commit -m 'First commit'
+
+# git diff --patch
+
+cat > system-aarch64.patch <<-'EOF'
+diff --git a/flake.nix b/flake.nix
+index 67b0f05..57fdd66 100644
+--- a/flake.nix
++++ b/flake.nix
+@@ -15,7 +15,7 @@
+       homeDirectory = "/home/${userName}";
+ 
+       # system = "x86_64-linux";
+-      # system = "aarch64-linux";
++      system = "aarch64-linux";
+
+       # pkgs = nixpkgs.legacyPackages.${system};
+
+EOF
+
+cat > system-x86_64.patch <<-'EOF'
+diff --git a/flake.nix b/flake.nix
+index 67b0f05..33ddac4 100644
+--- a/flake.nix
++++ b/flake.nix
+@@ -14,7 +14,7 @@
+       userName = "vagrant";
+       homeDirectory = "/home/${userName}";
+ 
+-      # system = "x86_64-linux";
++      system = "x86_64-linux";
+       # system = "aarch64-linux";
+
+       # pkgs = nixpkgs.legacyPackages.${system};
+
+EOF
+
+ARCH=$(uname -m)
+[ "$ARCH" == "aarch64" ] && (git apply --verbose system-aarch64.patch || exit 1)
+[ "$ARCH" == "x86_64" ] && (git apply --verbose system-x86_64.patch || exit 1)
+rm -v system-aarch64.patch system-x86_64.patch
+
+sed -i 's/.*userName = ".*";/userName = "'"$USER"'";/' /home/"$USER"/.config/home-manager/flake.nix
 
 "$OLD_PWD"/nix \
 --extra-experimental-features nix-command \
@@ -231,30 +283,6 @@ remove \
 ls -ahl "$HOME"/.local/state/nix/profiles/profile || true
 file "$HOME"/.local/state/nix/profiles || true
 test -d "$HOME"/.local/state/nix/profiles && rm -frv "$HOME"/.local/state/nix/profiles
-
-git add . \
-&& git commit -m 'First commit'
-
-cat > system-aarch64.patch <<-'EOF'
-diff --git a/flake.nix b/flake.nix
-index f461aa4..eea9ce0 100644
---- a/flake.nix
-+++ b/flake.nix
-@@ -14,7 +14,8 @@
- userName = "bob";
-       homeDirectory = "/home/${userName}";
- 
--      system = "x86_64-linux";
-+      # system = "x86_64-linux";
-+      system = "aarch64-linux";
-       pkgs = nixpkgs.legacyPackages.${system};
- 
-       # overlays.default = nixpkgs.lib.composeManyExtensions [
-EOF
-
-ARCH=$(uname -m)
-[ "$ARCH" == "aarch64" ] && git apply system-aarch64.patch
-# [ "$ARCH" == "x86_64" ] && git apply system-x86_64.patch
 
 export NIX_CONFIG="extra-experimental-features = nix-command flakes"
 
@@ -313,3 +341,5 @@ nix --version \
 && home-manager switch
 "
 '
+
+exec /home/"$USER"/.nix-profile/bin/zsh --login
