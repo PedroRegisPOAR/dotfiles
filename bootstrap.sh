@@ -31,6 +31,7 @@ echo "Start kvm stuff..." \
 && echo "End kvm stuff!" \
 && (test -w /dev/kvm || sudo chown -v "$(id -u)":"$(id -g)" /dev/kvm) 
 
+# TODO: may it be with exec?
 echo '"$HOME"/.nix-profile/bin/zsh --login' >> "$HOME"/.bashrc
 
 ./nix --version \
