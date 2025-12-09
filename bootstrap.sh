@@ -4,13 +4,13 @@ ARCH=$(uname -m)
 
 case "$ARCH" in
     x86_64)
-        BUILD_ID="308296217"
-        EXPECTED_SHA256SUM=18710ed342eb80e8417e9bb87ce5b63e54ec4b3daeed6dc068c3c0adb6bebfe5
+        BUILD_ID="311316992"
+        EXPECTED_SHA256SUM=bb305539368007a66b1117c033dfac39a4c640e9a8590bed460a9302a88dc8a9
         HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
-        BUILD_ID="308399262"
-        EXPECTED_SHA256SUM=869a20597a27e32fdc2c9b9d7a00e05eb2483c7485dea0f2fe57bffc2c704e06
+        BUILD_ID="311250514"
+        EXPECTED_SHA256SUM=c348064240e178d53679079e6b1025294bcd49d15d5c3558702d7ae7f7bc7663
         HM_ATTR=bob
         ;;
     *)
