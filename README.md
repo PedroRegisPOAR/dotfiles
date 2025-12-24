@@ -5,7 +5,8 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
 ```
 
 ```bash
-curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | "$SHELL" \
+&& exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
 
 0)
