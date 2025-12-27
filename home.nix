@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, pkgsPy389, pkgsPy3921, ... }:
+{ config, pkgs, nixpkgs, pkgsPy389, pkgsPy3921, ... }:
 
 {
 
@@ -32,7 +32,7 @@
     # vscodium
 
     # dbeaver-bin
-    # gitkraken
+    gitkraken
     # google-chrome
     # jetbrains.pycharm-community
     kdePackages.kolourpaint
@@ -112,13 +112,13 @@
     awscli
     coreutils
     binutils
-    utillinux
+    util-linux
     xorg.xkill
     glibc.bin
     patchelf
     chrpath
     gparted
-    glxinfo
+    mesa-demos
     file
     findutils
     gnugrep
@@ -392,9 +392,12 @@
         docker image prune --filter="dangling=true" --force
         docker image prune --force
         docker container prune --force
+        docker image prune --force
         docker system prune --force
-        docker volume prune --all --force
 
+        # WARNING: This will remove all unused volumes and images!
+        docker volume prune --all --force
+        docker image prune --all --force
 
         du -cksh /* 2> /dev/null | sort -rh | head -n 15
         du -cksh "$HOME"/.cache/* 2> /dev/null | sort -rh | head -n 15
@@ -723,7 +726,7 @@
     # Your zsh config
     enable = true;
     enableCompletion = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.home.homeDirectory}";
     # enableAutosuggestions = true;
     autosuggestion.enable = true;
     # enableSyntaxHighlighting = true;

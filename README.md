@@ -5,7 +5,8 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
 ```
 
 ```bash
-curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | "$SHELL" \
+&& exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
 
 0)
@@ -16,13 +17,13 @@ ARCH=$(uname -m)
 
 case "$ARCH" in
     x86_64)
-        BUILD_ID="308296217"
-        EXPECTED_SHA256SUM=18710ed342eb80e8417e9bb87ce5b63e54ec4b3daeed6dc068c3c0adb6bebfe5
+        BUILD_ID="313290523"
+        EXPECTED_SHA256SUM=e95f16f84987096586abe959c80bb910d26a7fa7707c42802400be999b6ad5ab
         HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
-        BUILD_ID="308399262"
-        EXPECTED_SHA256SUM=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        BUILD_ID="312837149"
+        EXPECTED_SHA256SUM=8fda1192c5f93415206b7028c4afe694611d1a5525bfcb5f3f2d57cc87df0d56
         HM_ATTR=bob
         ;;
     *)
@@ -36,11 +37,7 @@ esac
 | sha256sum -c \
 && chmod +x nix \
 && ./nix --version
-```
 
-1)
-```bash
-sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 
 ./nix \
 --extra-experimental-features nix-command \
@@ -52,7 +49,7 @@ shell \
 --keep HM_ATTR \
 --override-flake \
 nixpkgs \
-github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
+github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852 \
 nixpkgs#bashInteractive \
 nixpkgs#coreutils \
 nixpkgs#git \
@@ -73,7 +70,7 @@ flake \
 clone \
 --override-flake \
 nixpkgs \
-github:NixOS/nixpkgs/fd487183437963a59ba763c0cc4f27e3447dd6dd \
+github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852 \
 'github:PedroRegisPOAR/dotfiles' \
 --dest "$HOME"/.config/nixpkgs
 

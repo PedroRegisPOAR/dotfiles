@@ -65,6 +65,21 @@
     lock \
     --override-input nixpkgs 'github:NixOS/nixpkgs/9a094440e02a699be5c57453a092a8baf569bdad' \
     --override-input home-manager 'github:nix-community/home-manager/f21d9167782c086a33ad53e2311854a8f13c281e'
+
+
+    25.11
+    nix \
+    flake \
+    lock \
+    --override-input nixpkgs github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4 \
+    --override-input home-manager github:nix-community/home-manager/f63d0fe9d81d36e5fc95497217a72e02b8b7bcab
+
+    nix \
+    flake \
+    lock \
+    --override-input nixpkgs github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852 \
+    --override-input home-manager github:nix-community/home-manager/f63d0fe9d81d36e5fc95497217a72e02b8b7bcab
+
   */
   inputs = {
     # Specify the source of Home Manager and Nixpkgs
@@ -193,7 +208,7 @@
           nixpkgs-fmt
           patchelf
           poetry
-          python3Full
+          python3
           tmate
 
           (writeScriptBin "first-time-gphms" ''
