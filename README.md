@@ -1,13 +1,20 @@
 # dotfiles
 
 ```bash
-curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh | "$SHELL"
 ```
 
 ```bash
 curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | "$SHELL" \
 && exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
+
+
+```bash
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap-unprivileged.sh | "$SHELL" \
+&& . ~/.profile
+```
+
 
 0)
 ```bash
