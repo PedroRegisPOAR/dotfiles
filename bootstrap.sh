@@ -137,6 +137,7 @@ cat << 'EOF' > flake.nix
                 nano
                 file
                 which
+                openssh
 
                 hms
                 fooBar
