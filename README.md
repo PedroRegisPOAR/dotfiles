@@ -5,13 +5,13 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
 ```
 
 ```bash
-curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | "$SHELL" \
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | sh \
 && exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
 
 
 ```bash
-curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap-unprivileged.sh | "$SHELL" \
+curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap-unprivileged.sh | sh \
 && . ~/.profile
 ```
 
