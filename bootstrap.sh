@@ -138,6 +138,7 @@ cat << 'EOF' > flake.nix
                 file
                 which
                 openssh
+                pgrep
 
                 hms
                 fooBar
