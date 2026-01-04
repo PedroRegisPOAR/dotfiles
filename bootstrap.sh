@@ -103,6 +103,22 @@ cat << 'EOF' > flake.nix
 
               home-manager switch --flake "$HOME/.config/home-manager"#"$(id -un)"
           '';
+          ngc = final.writeScriptBin "ngc" ''
+            #! ${final.runtimeShell} -e
+              nix \
+              store \
+              gc \
+              --verbose \
+              --option keep-build-log false \
+              --option keep-derivations false \
+              --option keep-env-derivations false \
+              --option keep-failed false \
+              --option keep-going false \
+              --option keep-outputs false \
+              && nix-collect-garbage --delete-old \
+              && nix store optimise --verbose \
+              && du -cksh /nix 
+          '';
         })
       ];
       pkgs = import nixpkgs {
@@ -198,6 +214,15 @@ cat << 'EOF' > flake.nix
                   ];
                   theme = "robbyrussell";
                 };
+              };
+
+              programs.direnv = {
+                enable = true;
+                nix-direnv = {
+                  enable = true;
+                };
+                enableZshIntegration = true;
+                silent = true;
               };
             }
           )
@@ -299,20 +324,20 @@ switch \
 -lc 'nix flake --version' \
 || echo 'The instalation may have failed!'
 
-test -L /home/"$USER"/.nix-profile/bin/zsh \
-&& "$OLD_PWD"/nix \
-store \
-gc \
---option keep-build-log false \
---option keep-derivations false \
---option keep-env-derivations false \
---option keep-failed false \
---option keep-going false \
---option keep-outputs true \
-&& "$OLD_PWD"/nix \
-store \
-optimise
-
+# test -L /home/"$USER"/.nix-profile/bin/zsh \
+# && "$OLD_PWD"/nix \
+# store \
+# gc \
+# --option keep-build-log false \
+# --option keep-derivations false \
+# --option keep-env-derivations false \
+# --option keep-failed false \
+# --option keep-going false \
+# --option keep-outputs true \
+# && "$OLD_PWD"/nix \
+# store \
+# optimise
+# 
 # test -L /home/"$USER"/.nix-profile/bin/zsh \
 # && test -f "$OLD_PWD"/nix && rm -v "$OLD_PWD"/nix
 
