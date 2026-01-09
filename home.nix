@@ -19,8 +19,6 @@
     # ida-free
     # inkscape
     
-    # insomnia
-    
     # jadx
     # kwave # TODO: it opens but when saving the audio file it errors
     # libreoffice
@@ -38,10 +36,11 @@
     kdePackages.kolourpaint
     kdePackages.okular
     # keepassxc
-    peek
-    postman
+    # peek
+    # insomnia    
+    # postman
     # qbittorrent
-    redisinsight
+    # redisinsight
     vlc
 
     # slack
@@ -87,15 +86,15 @@
 
     # steam-run
 
-    xorg.xclock
+    # xorg.xclock
     # hello
-    sl
-    asciiquarium
-    figlet
-    cowsay
-    ponysay
-    pfetch
-    cmatrix
+    # sl
+    # asciiquarium
+    # figlet
+    # cowsay
+    # ponysay
+    # pfetch
+    # cmatrix
 
     # TODO: It can "work" by chance if nix is instaled in an imperative way.fng
     # Just enabling it is not adding it to "$HOME"/.nix-profile/bin
