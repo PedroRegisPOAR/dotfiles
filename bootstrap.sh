@@ -4,7 +4,7 @@
 test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 
 
-COMPUTED_ARCHITECTURE=$(uname -m)
+export COMPUTED_ARCHITECTURE=$(uname -m)
 
 case "$COMPUTED_ARCHITECTURE" in
     x86_64)
