@@ -6,7 +6,7 @@ test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv 
 
 COMPUTED_ARCHITECTURE=$(uname -m)
 
-case "$EXPECTED_SHA256SUM" in
+case "$COMPUTED_ARCHITECTURE" in
     x86_64)
         BUILD_ID="313290523"
         EXPECTED_SHA256SUM=e95f16f84987096586abe959c80bb910d26a7fa7707c42802400be999b6ad5ab
