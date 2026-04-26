@@ -281,6 +281,8 @@ index 67b0f05..33ddac4 100644
 
 EOF
 
+echo$COMPUTED_ARCHITECTURE
+
 [ "$COMPUTED_ARCHITECTURE" == "aarch64" ] && (git apply --verbose system-aarch64.patch || exit 1)
 [ "$COMPUTED_ARCHITECTURE" == "x86_64" ] && (git apply --verbose system-x86_64.patch || exit 1)
 rm -v system-aarch64.patch system-x86_64.patch
