@@ -1,20 +1,22 @@
+[ -n "$USER" ] || { echo "The USER variable is empty"; exit 1; }
+[ -n "$HOME" ] || { echo "The HOME variable is empty"; exit 1; }
+
 test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 
-ARCH=$(uname -m)
 
-case "$ARCH" in
+COMPUTED_ARCHITECTURE=$(uname -m)
+
+case "$EXPECTED_SHA256SUM" in
     x86_64)
         BUILD_ID="313290523"
         EXPECTED_SHA256SUM=e95f16f84987096586abe959c80bb910d26a7fa7707c42802400be999b6ad5ab
-        HM_ATTR=pedro-pedro-G3
         ;;
     aarch64)
         BUILD_ID="312837149"
         EXPECTED_SHA256SUM=8fda1192c5f93415206b7028c4afe694611d1a5525bfcb5f3f2d57cc87df0d56
-        HM_ATTR=bob
         ;;
     *)
-        echo "Error: Unsupported architecture 'ARCH'" >&2
+        echo "Error: Unsupported architecture $COMPUTED_ARCHITECTURE" >&2
         exit 1
         ;;
 esac
@@ -42,6 +44,7 @@ echo '"$HOME"/.nix-profile/bin/zsh --login' >> "$HOME"/.bashrc
 --option auto-allocate-uids false \
 shell \
 --ignore-environment \
+--keep COMPUTED_ARCHITECTURE \
 --keep HOME \
 --keep SHELL \
 --keep USER \
@@ -278,9 +281,8 @@ index 67b0f05..33ddac4 100644
 
 EOF
 
-ARCH=$(uname -m)
-[ "$ARCH" == "aarch64" ] && (git apply --verbose system-aarch64.patch || exit 1)
-[ "$ARCH" == "x86_64" ] && (git apply --verbose system-x86_64.patch || exit 1)
+[ "$COMPUTED_ARCHITECTURE" == "aarch64" ] && (git apply --verbose system-aarch64.patch || exit 1)
+[ "$COMPUTED_ARCHITECTURE" == "x86_64" ] && (git apply --verbose system-x86_64.patch || exit 1)
 rm -v system-aarch64.patch system-x86_64.patch
 
 sed -i 's/.*userName = ".*";/userName = "'"$USER"'";/' /home/"$USER"/.config/home-manager/flake.nix
