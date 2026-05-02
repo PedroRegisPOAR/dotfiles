@@ -161,6 +161,7 @@ cat << 'EOF' > flake.nix
 
                 hms
                 fooBar
+                ngc
               ];
 
               nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
