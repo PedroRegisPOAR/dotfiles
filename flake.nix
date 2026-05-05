@@ -232,5 +232,9 @@
           || nix build $(nix eval --impure --raw .#devShells.x86_64-linux.default.drvPath) --out-link .profiles/dev-shell-default
         '';
       };
+    }
+    //
+    {
+     templates = import ./src/templates;
     };
 }
