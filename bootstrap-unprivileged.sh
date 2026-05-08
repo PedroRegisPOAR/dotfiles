@@ -37,7 +37,7 @@ shell \
 --keep USER \
 --override-flake \
 nixpkgs \
-github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4 \
+github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5 \
 nixpkgs#bashInteractive \
 nixpkgs#coreutils \
 nixpkgs#file \
@@ -256,8 +256,8 @@ sed -i 's/.*userName = ".*";/userName = "'"$USER"'";/' /home/"$USER"/.config/hom
 --option warn-dirty false \
 flake \
 lock \
---override-input nixpkgs github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4 \
---override-input home-manager github:nix-community/home-manager/f63d0fe9d81d36e5fc95497217a72e02b8b7bcab
+--override-input nixpkgs github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5 \
+--override-input home-manager github:nix-community/home-manager/cc09c0f9b7eaa95c2d9827338a5eb03d32505ca5
 
 # Even removing all packages it still making home-manager break, why?
 "$OLD_PWD"/nix \
@@ -287,19 +287,19 @@ switch \
 -lc 'nix flake --version' \
 || echo 'The instalation may have failed!'
 
-test -L /home/"$USER"/.nix-profile/bin/zsh \
-&& "$OLD_PWD"/nix \
-store \
-gc \
---option keep-build-log false \
---option keep-derivations false \
---option keep-env-derivations false \
---option keep-failed false \
---option keep-going false \
---option keep-outputs true \
-&& "$OLD_PWD"/nix \
-store \
-optimise
+# test -L /home/"$USER"/.nix-profile/bin/zsh \
+# && "$OLD_PWD"/nix \
+# store \
+# gc \
+# --option keep-build-log false \
+# --option keep-derivations false \
+# --option keep-env-derivations false \
+# --option keep-failed false \
+# --option keep-going false \
+# --option keep-outputs true \
+# && "$OLD_PWD"/nix \
+# store \
+# optimise
 
 # test -L /home/"$USER"/.nix-profile/bin/zsh \
 # && test -f "$OLD_PWD"/nix && rm -v "$OLD_PWD"/nix
@@ -316,8 +316,8 @@ COMMANDS
 --extra-experimental-features flakes \
 --no-use-registries \
 shell \
-github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4#bashInteractive \
-github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4#home-manager \
+github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5#bashInteractive \
+github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5#home-manager \
 --command \
 bash \
 -c \
@@ -339,7 +339,7 @@ cat >> "$HOME"/.profile << 'EOF'
 --extra-experimental-features flakes \
 --no-use-registries \
 shell \
-github:NixOS/nixpkgs/c97c47f2bac4fa59e2cbdeba289686ae615f8ed4#bashInteractive \
+github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5#bashInteractive \
 --command \
 bash \
 -c \
