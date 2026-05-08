@@ -30,7 +30,7 @@ cd /etc/nixos \
 && sudo nixos-rebuild switch --flake .#
 
 sudo reboot
-+```
+```
 
 
 0)
