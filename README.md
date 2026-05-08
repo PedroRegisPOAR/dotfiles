@@ -16,6 +16,23 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 ```
 
 
+```bash
+cd /etc/nixos \
+&& sudo \
+    nix \
+    --refresh \
+    flake \
+    init \
+    --template \
+    github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
+&& git init \
+&& git add . \
+&& sudo nixos-rebuild switch --flake .#
+
+sudo reboot
++```
+
+
 0)
 ```bash
 test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
