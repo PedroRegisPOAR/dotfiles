@@ -112,6 +112,7 @@
       hello
       jq
       lsof
+      claude-code
       # mcp-nixos
       starship
       sudo
