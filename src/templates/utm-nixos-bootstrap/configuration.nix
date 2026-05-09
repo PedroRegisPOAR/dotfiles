@@ -101,15 +101,14 @@
       "wheel"
     ];
     packages = with pkgs; [
+      bashtop
+      gnugrep
       file
       firefox
       git
       jq
       lsof
       findutils
-      dive
-      # foo-bar
-      # final.myapp
       starship
       direnv
       fzf
@@ -215,6 +214,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }

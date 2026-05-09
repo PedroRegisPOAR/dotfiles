@@ -25,8 +25,8 @@ cd /etc/nixos \
     init \
     --template \
     github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
-&& git init \
-&& git add . \
+&& sudo git init \
+&& sudo git add . \
 && sudo nixos-rebuild switch --flake .#
 
 sudo reboot
