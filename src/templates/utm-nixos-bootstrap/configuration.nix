@@ -74,20 +74,23 @@
   services.spice-vdagentd.enable = true;
   services.xserver.videoDrivers = [ "qxl" ];
 
-  services.getty.helpLine = pkgs.lib.mkForce "" ; 
+  # services.getty.helpLine = pkgs.lib.mkForce "" ; 
 
-  systemd.user.services.kgx-autostart = {
-    description = "Start KGX on login";
-    after = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.gnome-console}/bin/kgx";
-    };
-  };
+  # systemd.user.services.kgx-autostart = {
+  #   description = "Start KGX on login";
+  #   after = [ "graphical-session.target" ];
+  #   partOf = [ "graphical-session.target" ];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.gnome-console}/bin/kgx";
+  #   };
+  # };
 
-  services.xserver.displayManager.sessionCommands = ''
-    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
-    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+  environment.etc."xdg/autostart/kgx.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=KGX
+    Exec=${pkgs.gnome-console}/bin/kgx
+    X-GNOME-Autostart-enabled=true
   '';
 
   # Enable CUPS to print documents.
