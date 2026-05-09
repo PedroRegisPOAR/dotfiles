@@ -112,7 +112,7 @@
       hello
       jq
       lsof
-      mcp-nixos
+      # mcp-nixos
       starship
       sudo
       which
