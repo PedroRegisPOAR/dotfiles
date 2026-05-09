@@ -78,7 +78,7 @@
 
   systemd.user.services.kgx-autostart = {
     description = "Start KGX on login";
-    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.gnome-console}/bin/kgx";
@@ -86,11 +86,8 @@
   };
 
   services.xserver.displayManager.sessionCommands = ''
-    # exo-open \
-    #   --launch TerminalEmulator \
-    #   --zoom=-3 \
-    #   --geometry 154x40
-    echo AAAAA
+    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
   '';
 
   # Enable CUPS to print documents.
