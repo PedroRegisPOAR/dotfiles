@@ -76,15 +76,6 @@
 
   # services.getty.helpLine = pkgs.lib.mkForce "" ; 
 
-  # systemd.user.services.kgx-autostart = {
-  #   description = "Start KGX on login";
-  #   after = [ "graphical-session.target" ];
-  #   partOf = [ "graphical-session.target" ];
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.gnome-console}/bin/kgx";
-  #   };
-  # };
-
   environment.etc."xdg/autostart/kgx.desktop".text = ''
     [Desktop Entry]
     Type=Application
@@ -205,6 +196,37 @@
     #  wget
     spice-vdagent
     spice-gtk
+
+    binutils
+    btop
+    chrpath
+    coreutils
+    curl
+    exfat
+    file
+    findutils
+    gawk
+    git
+    glibc.bin
+    gnugrep
+    gnumake
+    gnused
+    gparted
+    hexdump
+    killall
+    lsof    
+    netcat
+    nettools    
+    nmap
+    openssh
+    patchelf
+    procps
+    tree
+    util-linux
+    wget
+    which
+    xorg.xkill
+    xz
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
