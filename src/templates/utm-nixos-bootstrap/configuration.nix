@@ -76,7 +76,7 @@
 
   services.xserver.displayManager.sessionCommands = ''
     echo $PATH
-    "${gnome-console}"/bin/kgx
+    "${pkgs.gnome-console}"/bin/kgx
     # exo-open \
     #   --launch TerminalEmulator \
     #   --zoom=-3 \
