@@ -81,7 +81,7 @@
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.gnome-console}"/bin/kgx;
+      ExecStart = "${pkgs.gnome-console}/bin/kgx";
     };
   };
 
