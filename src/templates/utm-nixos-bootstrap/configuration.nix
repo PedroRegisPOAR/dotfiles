@@ -74,7 +74,7 @@
   services.spice-vdagentd.enable = true;
   services.xserver.videoDrivers = [ "qxl" ];
 
-  services.getty.helpLine = lib.mkForce "" ; 
+  services.getty.helpLine = pkgs.lib.mkForce "" ; 
 
   systemd.user.services.kgx-autostart = {
     description = "Start KGX on login";
