@@ -57,10 +57,9 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  # systemd.services."getty@tty1".enable = false;
+  systemd.services."getty@tty1".enable = false;
   services.displayManager.autoLogin.user = "fog";
-  # services.xserver.displayManager.gdm.enable = false;
-  # services.xserver.displayManager.lightdm.enable = false;
+
   # Configure keymap in X11
   services.xserver.xkb.layout = "br";
   # services.xserver.xkb.variant = "thinkpad";
@@ -112,7 +111,7 @@
       hello
       jq
       lsof
-      claude-code
+      # claude-code
       # mcp-nixos
       starship
       sudo
