@@ -18,6 +18,7 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 
 ```bash
 cd /etc/nixos \
+&& sudo rm -frv /etc/nixos/{*,.*} \
 && sudo \
     nix \
     --refresh \
@@ -27,9 +28,8 @@ cd /etc/nixos \
     github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
 && sudo git init \
 && sudo git add . \
-&& sudo nixos-rebuild switch --flake .#
-
-sudo reboot
+&& sudo nixos-rebuild switch --flake .# \
+&& sudo reboot
 ```
 
 

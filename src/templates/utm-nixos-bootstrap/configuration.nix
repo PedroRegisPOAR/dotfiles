@@ -101,20 +101,21 @@
       "wheel"
     ];
     packages = with pkgs; [
-      bashtop
-      gnugrep
+      btop
+      direnv
       file
+      findutils
       firefox
+      fzf
       git
+      gnugrep
+      hello
       jq
       lsof
-      findutils
+      mcp-nixos
       starship
-      direnv
-      fzf
       sudo
       which
-      hello
     ];
     shell = pkgs.zsh;
     uid = 1000;
