@@ -54,17 +54,21 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  systemd.services."getty@tty1".enable = false;
-  services.displayManager.autoLogin.user = "fog";
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "br";
   # services.xserver.xkb.variant = "thinkpad";
   # Configure console keymap
   console.keyMap = "br-abnt2";
+
+  # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.displayManager.autoLogin.user = "fog";
+
+  # https://nixos.org/manual/nixos/stable/#sec-xfce
+  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.desktopManager.xfce.enableScreensaver = false;
 
   services.spice-vdagentd.enable = true;
   services.xserver.videoDrivers = [ "qxl" ];
