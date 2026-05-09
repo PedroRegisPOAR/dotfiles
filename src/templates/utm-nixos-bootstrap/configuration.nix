@@ -74,9 +74,18 @@
   services.spice-vdagentd.enable = true;
   services.xserver.videoDrivers = [ "qxl" ];
 
+  services.getty.helpLine = lib.mkForce "" ; 
+
+  systemd.user.services.kgx-autostart = {
+    description = "Start KGX on login";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.gnome-console}"/bin/kgx;
+    };
+  };
+
   services.xserver.displayManager.sessionCommands = ''
-    echo $PATH
-    "${pkgs.gnome-console}"/bin/kgx
     # exo-open \
     #   --launch TerminalEmulator \
     #   --zoom=-3 \
