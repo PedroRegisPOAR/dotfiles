@@ -62,14 +62,14 @@
   console.keyMap = "br-abnt2";
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.displayManager.autoLogin.user = "fog";
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.autoLogin.user = "fog";
 
   # https://nixos.org/manual/nixos/stable/#sec-xfce
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.desktopManager.xfce.enableScreensaver = false;
-  services.displayManager.autoLogin.user = "fog";
+  # services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.xfce.enableScreensaver = false;
+  # services.displayManager.autoLogin.user = "fog";
 
   services.spice-vdagentd.enable = true;
   services.xserver.videoDrivers = [ "qxl" ];
