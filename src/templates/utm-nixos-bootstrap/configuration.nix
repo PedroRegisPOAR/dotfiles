@@ -75,10 +75,13 @@
   services.xserver.videoDrivers = [ "qxl" ];
 
   services.xserver.displayManager.sessionCommands = ''
-    exo-open \
-      --launch TerminalEmulator \
-      --zoom=-3 \
-      --geometry 154x40
+    echo $PATH
+    "${gnome-console}"/bin/kgx
+    # exo-open \
+    #   --launch TerminalEmulator \
+    #   --zoom=-3 \
+    #   --geometry 154x40
+    echo AAAAA
   '';
 
   # Enable CUPS to print documents.
