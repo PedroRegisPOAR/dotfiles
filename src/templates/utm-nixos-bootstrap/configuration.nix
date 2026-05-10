@@ -191,11 +191,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    spice-vdagent
-    spice-gtk
+  environment.systemPackages = with pkgs; [    
+    spice-vdagent # It is an must for copy and paste to work.
+    spice-gtk # It is an must for copy and paste to work.
+
+    claude-code
+    mcp-nixos
 
     binutils
     btop
