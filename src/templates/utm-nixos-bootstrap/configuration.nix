@@ -188,11 +188,8 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.extraOptions = "experimental-features = nix-command flakes";
-  nix = {
-    settings = {
-      cores = 8;
-    };
-  };  
+  nix.settings.cores = 6;
+  nix.settings.max-jobs = 3
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
