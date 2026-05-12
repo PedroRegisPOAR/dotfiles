@@ -80,6 +80,15 @@
     [Desktop Entry]
     Type=Application
     Name=KGX
+    Exec=${pkgs.gnome-console}/bin/kgx
+    X-GNOME-Autostart-enabled=true
+  '';
+
+
+  environment.etc."xdg/autostart/kgxbtop.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=KGXBTOP
     Exec=${pkgs.gnome-console}/bin/kgx -e "btop"
     X-GNOME-Autostart-enabled=true
   '';
@@ -115,6 +124,7 @@
       firefox
       fzf
       git
+      gnome-terminal
       gnugrep
       hello
       jq
