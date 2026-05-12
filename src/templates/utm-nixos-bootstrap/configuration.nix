@@ -84,7 +84,6 @@
     X-GNOME-Autostart-enabled=true
   '';
 
-
   environment.etc."xdg/autostart/kgxbtop.desktop".text = ''
     [Desktop Entry]
     Type=Application
