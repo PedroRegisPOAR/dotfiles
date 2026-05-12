@@ -188,6 +188,11 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.extraOptions = "experimental-features = nix-command flakes";
+  nix = {
+    settings = {
+      cores = 8;
+    };
+  };  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -196,7 +201,7 @@
     spice-gtk # It is an must for copy and paste to work.
 
     claude-code
-    mcp-nixos
+    # mcp-nixos # TODO
 
     binutils
     btop
