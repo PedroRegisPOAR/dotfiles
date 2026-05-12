@@ -80,7 +80,7 @@
     [Desktop Entry]
     Type=Application
     Name=KGX
-    Exec=${pkgs.gnome-console}/bin/kgx
+    Exec=${pkgs.gnome-console}/bin/kgx -e "btop"
     X-GNOME-Autostart-enabled=true
   '';
 
@@ -188,8 +188,8 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.extraOptions = "experimental-features = nix-command flakes";
-  nix.settings.cores = 6;
-  nix.settings.max-jobs = 3;
+  nix.settings.cores = 4; # https://discourse.nixos.org/t/i-o-cpu-scheduling-jobs-cores-and-performance-baby/66120/4
+  nix.settings.max-jobs = 1;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
