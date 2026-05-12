@@ -218,10 +218,10 @@
     findutils
     gawk
     git
-    glibc.bin
-    gnome-terminal    
-    gnugrep
-    gnumake
+    glibc.bin    
+    gnome-terminal # 
+    gnugrep # 
+    gnumake # 
     gnused
     gparted
     hexdump
