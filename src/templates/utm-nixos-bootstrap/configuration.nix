@@ -123,7 +123,6 @@
       firefox
       fzf
       git
-      gnome-terminal
       gnugrep
       hello
       jq
@@ -220,6 +219,7 @@
     gawk
     git
     glibc.bin
+    gnome-terminal    
     gnugrep
     gnumake
     gnused
