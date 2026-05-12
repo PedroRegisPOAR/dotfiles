@@ -31,7 +31,7 @@ sudo rm -frv /etc/nixos/ \
     github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
 && sudo git init \
 && sudo git add . \
-&& sudo nixos-rebuild switch --flake .#
+&& sudo nixos-rebuild switch --flake '/etc/nixos#' --option cores 0 --option max-jobs auto
 ```
 
 
