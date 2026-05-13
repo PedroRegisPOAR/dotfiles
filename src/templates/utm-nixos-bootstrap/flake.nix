@@ -1,11 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    mcp-nixos.url = "github:utensils/mcp-nixos";
-    mcp-nixos.nixpkgs.follows = "nixpkgs";
+    # mcp-nixos.url = "github:utensils/mcp-nixos";
+    # mcp-nixos.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, mcp-nixos, ... }:
+  # outputs = { self, nixpkgs, mcp-nixos, ... }:
+  outputs = { self, nixpkgs, ... }:
     {
       formatter.aarch64-linux = nixpkgs.legacyPackages."aarch64-linux".nixpkgs-fmt;
       nixosConfigurations.n1x0s = nixpkgs.lib.nixosSystem {
