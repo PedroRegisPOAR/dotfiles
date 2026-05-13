@@ -30,6 +30,7 @@ sudo rm -frv /etc/nixos/ \
     init \
     --template \
     github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
+&& sudo nixos-rebuild test --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto \
 && sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
 ```
 
