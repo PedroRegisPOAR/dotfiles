@@ -36,7 +36,7 @@ nix \
 --extra-experimental-features flakes \
 flake \
 lock \
---override-input nixpkgs github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5 \    
+--override-input nixpkgs github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5 \
 && sudo nixos-rebuild test --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto \
 && sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
 ```
