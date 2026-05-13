@@ -80,9 +80,12 @@ lock \
 --override-input nixpkgs github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852
 ```
 
-
-0c88e1f2bdb9
-
+```bash
+mcp-nixos = pkgs.python3Packages.mcp-nixos.overridePythonAttrs (old: {
+  propagatedBuildInputs = (old.propagatedBuildInputs or []) 
+    ++ [ pkgs.python3Packages.platformdirs ];
+});
+```
 
 0)
 ```bash
