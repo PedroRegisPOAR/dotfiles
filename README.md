@@ -16,6 +16,23 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 ```
 
 
+
+```bash
+sudo rm -frv /etc/nixos/ \
+&& sudo mkdir -pv /etc/nixos/ \
+&& cd /etc/nixos \
+&& sudo \
+    nix \
+    --extra-experimental-features nix-command \
+    --extra-experimental-features flakes \
+    --refresh \
+    flake \
+    init \
+    --template \
+    github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
+&& sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
+```
+
 ```bash
 sudo rm -frv /etc/nixos/ \
 && sudo mkdir -pv /etc/nixos/ \
@@ -33,6 +50,39 @@ sudo rm -frv /etc/nixos/ \
 && sudo git add . \
 && sudo nixos-rebuild switch --flake '/etc/nixos#' --option cores 0 --option max-jobs auto
 ```
+
+
+```bash
+sudo \
+nix \
+--extra-experimental-features nix-command \
+--extra-experimental-features flakes \
+flake \
+lock \
+--override-input nixpkgs github:NixOS/nixpkgs/9a094440e02a699be5c57453a092a8baf569bdad
+```
+
+```bash
+sudo \
+nix \
+--extra-experimental-features nix-command \
+--extra-experimental-features flakes \
+flake \
+lock \
+--override-input nixpkgs github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852
+```
+
+```bash
+sudo \
+nix \
+--extra-experimental-features nix-command \
+--extra-experimental-features flakes \
+flake \
+lock \
+--override-input nixpkgs github:NixOS/nixpkgs/0c88e1f2bdb9
+```
+
+0c88e1f2bdb9
 
 
 0)

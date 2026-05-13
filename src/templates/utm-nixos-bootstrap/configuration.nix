@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -62,9 +62,12 @@
   console.keyMap = "br-abnt2";
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
   services.displayManager.autoLogin.user = "fog";
+
 
   # https://nixos.org/manual/nixos/stable/#sec-xfce
   # services.xserver.desktopManager.xfce.enable = true;
@@ -194,6 +197,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.overlays = [ inputs.mcp-nixos.overlays.default ];
 
   nix.extraOptions = "experimental-features = nix-command flakes";
   nix.settings.cores = 4; # https://discourse.nixos.org/t/i-o-cpu-scheduling-jobs-cores-and-performance-baby/66120/4
@@ -237,7 +241,7 @@
     util-linux
     wget
     which
-    xorg.xkill
+    # xorg.xkill # xkill
     xz
   ];
 
