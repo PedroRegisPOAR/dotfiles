@@ -75,6 +75,8 @@
   # services.displayManager.autoLogin.user = "fog";
 
   services.spice-vdagentd.enable = true;
+  # TODO: how it is working in this flake if it was not merged in nixpkgs?
+  # https://github.com/NixOS/nixpkgs/pull/266080#issuecomment-3398768182
   systemd.user.services.spice-vdagent = {
     description = "spice-vdagent user daemon";
     after = [ "spice-vdagentd.service" "graphical-session.target" ];
