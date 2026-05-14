@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     # mcp-nixos.url = "github:utensils/mcp-nixos";
     # mcp-nixos.nixpkgs.follows = "nixpkgs";
   };
