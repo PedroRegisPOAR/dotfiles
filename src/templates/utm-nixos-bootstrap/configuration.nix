@@ -46,6 +46,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Fortaleza";
 
@@ -68,15 +70,12 @@
   services.displayManager.gdm.enable = true;
   services.displayManager.autoLogin.user = "fog";
 
-
   # https://nixos.org/manual/nixos/stable/#sec-xfce
   # services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.desktopManager.xfce.enableScreensaver = false;
   # services.displayManager.autoLogin.user = "fog";
 
   services.spice-vdagentd.enable = true;
-  # TODO: how it is working in this flake if it was not merged in nixpkgs?
-  # https://github.com/NixOS/nixpkgs/pull/266080#issuecomment-3398768182
   systemd.user.services.spice-vdagent = {
     description = "spice-vdagent user daemon";
     after = [ "spice-vdagentd.service" "graphical-session.target" ];
@@ -114,12 +113,11 @@
 
   security.sudo.wheelNeedsPassword = false; # TODO: hardening
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
-  users.extraGroups.fog.gid = 1000;
-  # users.groups.fog.gid = 1000;
+  # users.extraGroups.fog.gid = 1000;
+  users.groups.fog.gid = 1000;
 
   users.users.fog = {
-    isSystemUser = true;
-    # isNormalUser = true;
+    isNormalUser = true;
     password = "1"; # TODO: hardening
     createHome = true;
     home = "/home/fog";
@@ -133,22 +131,10 @@
       "wheel"
     ];
     packages = with pkgs; [
-      btop
       direnv
-      file
-      findutils
-      firefox
       fzf
-      git
-      gnugrep
-      hello
-      jq
-      lsof
-      # claude-code
-      # mcp-nixos
       starship
-      sudo
-      which
+      neovim
     ];
     shell = pkgs.zsh;
     uid = 1000;
@@ -180,7 +166,7 @@
     interactiveShellInit = ''
       export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh
       export ZSH_THEME="agnoster"
-      export ZSH_CUSTOM=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions
+      # export ZSH_CUSTOM=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions
       plugins=(
                 colored-man-pages
                 docker
@@ -202,7 +188,7 @@
       source "$(fzf-share)/key-bindings.zsh"
     '';
 
-    ohMyZsh.custom = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+    # ohMyZsh.custom = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
     promptInit = "";
   };
 
@@ -224,7 +210,9 @@
     spice-gtk # It is an must for copy and paste to work.
 
     claude-code
-    # mcp-nixos # TODO
+    mcp-nixos
+    uv
+    python3
 
     binutils
     btop
@@ -237,12 +225,11 @@
     gawk
     git
     glibc.bin    
-    gnome-terminal # 
-    gnugrep # 
-    gnumake # 
+    gnome-terminal
+    gnugrep
+    gnumake 
     gnused
     gparted
-    hexdump
     killall
     lsof    
     netcat
@@ -255,7 +242,8 @@
     util-linux
     wget
     which
-    # xorg.xkill # xkill
+    xkill
+    xclip
     xz
   ];
 
@@ -277,6 +265,30 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  # TODO: it hardcodes the user. Maybe "the correct way" is to use home-manager.
+  system.activationScripts.claudeMcpSettings =
+    let
+      settingsFile = pkgs.writeText "claude-settings.json" (builtins.toJSON {
+        alwaysThinkingEnabled = true;
+        projects."/etc/nixos".hasTrustDialogAccepted = true;
+        mcpServers.nixos = {
+          type = "stdio";
+          command = "mcp-nixos";
+          args = [];
+          env = {};
+        };
+      });
+    in {
+      text = ''
+        SETTINGS="/home/fog/.claude/settings.json"
+        if [ ! -f "$SETTINGS" ]; then
+          mkdir -p "/home/fog/.claude"
+          cp ${settingsFile} "$SETTINGS"
+          chown fog:fog "/home/fog/.claude" "$SETTINGS"
+        fi
+      '';
+      deps = [];
+    };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -285,5 +297,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
