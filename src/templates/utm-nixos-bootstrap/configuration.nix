@@ -76,6 +76,7 @@
   # services.displayManager.autoLogin.user = "fog";
 
   services.spice-vdagentd.enable = true;
+  # TODO: how it is working if the PR was not merged? https://github.com/NixOS/nixpkgs/pull/266080
   systemd.user.services.spice-vdagent = {
     description = "spice-vdagent user daemon";
     after = [ "spice-vdagentd.service" "graphical-session.target" ];

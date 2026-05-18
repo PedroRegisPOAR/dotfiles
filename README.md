@@ -59,15 +59,9 @@ sudo rm -frv /etc/nixos/ \
 && sudo nixos-rebuild switch --flake '/etc/nixos#' --option cores 0 --option max-jobs auto
 ```
 
-
+TODO: analise this, is it worth? Whats does it do?
 ```bash
-sudo \
-nix \
---extra-experimental-features nix-command \
---extra-experimental-features flakes \
-flake \
-lock \
---override-input nixpkgs github:NixOS/nixpkgs/9a094440e02a699be5c57453a092a8baf569bdad
+services.qemuGuest.enable = true;
 ```
 
 ```bash
@@ -80,12 +74,6 @@ lock \
 --override-input nixpkgs github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852
 ```
 
-```bash
-mcp-nixos = pkgs.python3Packages.mcp-nixos.overridePythonAttrs (old: {
-  propagatedBuildInputs = (old.propagatedBuildInputs or []) 
-    ++ [ pkgs.python3Packages.platformdirs ];
-});
-```
 
 0)
 ```bash
