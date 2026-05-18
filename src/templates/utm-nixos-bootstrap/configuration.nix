@@ -209,14 +209,10 @@
     spice-vdagent # It is an must for copy and paste to work.
     spice-gtk # It is an must for copy and paste to work.
 
-    claude-code
-    mcp-nixos
-    uv
-    python3
-
     binutils
     btop
     chrpath
+    claude-code
     coreutils
     curl
     exfat
@@ -230,20 +226,24 @@
     gnumake 
     gnused
     gparted
+    jq
     killall
     lsof    
+    mcp-nixos
     netcat
     nettools    
     nmap
     openssh
     patchelf
     procps
+    python3
     tree
     util-linux
+    uv
     wget
     which
-    xkill
     xclip
+    xkill
     xz
   ];
 
