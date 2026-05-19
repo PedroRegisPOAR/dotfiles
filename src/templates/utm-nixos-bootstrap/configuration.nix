@@ -36,6 +36,15 @@
     "exfat"
     ];
   */
+
+  # Swap comprimido em memória (~4.8 GiB virtuais). Sem custo de disco, ideal para VMs.
+  # Dá ao kernel espaço para mover páginas frias antes de matar processos de build.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
   networking.hostName = "n1x0s"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -76,7 +85,6 @@
   # services.displayManager.autoLogin.user = "fog";
 
   services.spice-vdagentd.enable = true;
-  # TODO: how it is working if the PR was not merged? https://github.com/NixOS/nixpkgs/pull/266080
   systemd.user.services.spice-vdagent = {
     description = "spice-vdagent user daemon";
     after = [ "spice-vdagentd.service" "graphical-session.target" ];
@@ -111,6 +119,18 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
+
+  # Mata proativamente processos pesados quando RAM + swap < threshold%,
+  # antes que o kernel OOM-killer aja de forma abrupta.
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 5;
+    extraArgs = [
+      "--prefer"
+      "^(nix|cc|c\\+\\+|ld|rustc|cargo)"
+    ];
+  };
 
   security.sudo.wheelNeedsPassword = false; # TODO: hardening
   # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
@@ -203,17 +223,25 @@
   nix.extraOptions = "experimental-features = nix-command flakes";
   nix.settings.cores = 4; # https://discourse.nixos.org/t/i-o-cpu-scheduling-jobs-cores-and-performance-baby/66120/4
   nix.settings.max-jobs = 1;
+  # Dispara GC automático do nix store quando o espaço livre cair abaixo de 1 GiB,
+  # coletando até liberar 5 GiB. Evita falhas de build por falta de espaço em disco.
+  nix.settings.min-free = 1024 * 1024 * 1024;
+  nix.settings.max-free = 1024 * 1024 * 1024 * 5;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [    
+  environment.systemPackages = with pkgs; [
     spice-vdagent # It is an must for copy and paste to work.
     spice-gtk # It is an must for copy and paste to work.
+
+    claude-code
+    mcp-nixos
+    uv
+    python3
 
     binutils
     btop
     chrpath
-    claude-code
     coreutils
     curl
     exfat
@@ -221,30 +249,26 @@
     findutils
     gawk
     git
-    glibc.bin    
+    glibc.bin
     gnome-terminal
     gnugrep
-    gnumake 
+    gnumake
     gnused
     gparted
-    jq
     killall
-    lsof    
-    mcp-nixos
+    lsof
     netcat
-    nettools    
+    nettools
     nmap
     openssh
     patchelf
     procps
-    python3
     tree
     util-linux
-    uv
     wget
     which
-    xclip
     xkill
+    xclip
     xz
   ];
 
@@ -275,11 +299,12 @@
         mcpServers.nixos = {
           type = "stdio";
           command = "mcp-nixos";
-          args = [];
-          env = {};
+          args = [ ];
+          env = { };
         };
       });
-    in {
+    in
+    {
       text = ''
         SETTINGS="/home/fog/.claude/settings.json"
         if [ ! -f "$SETTINGS" ]; then
@@ -288,12 +313,12 @@
           chown fog:fog "/home/fog/.claude" "$SETTINGS"
         fi
       '';
-      deps = [];
+      deps = [ ];
     };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
