@@ -56,7 +56,8 @@ sudo rm -frv /etc/nixos/ \
     github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
 && sudo git init \
 && sudo git add . \
-&& sudo nixos-rebuild switch --flake '/etc/nixos#' --option cores 0 --option max-jobs auto
+&& sudo nixos-rebuild test --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto \
+&& sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
 ```
 
 TODO: analise this, is it worth? Whats does it do?
