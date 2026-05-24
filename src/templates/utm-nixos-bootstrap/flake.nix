@@ -1,6 +1,7 @@
 {
 
   /*
+    sudo \
     nix \
     flake \
     lock \

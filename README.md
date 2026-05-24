@@ -16,31 +16,6 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 ```
 
 
-
-```bash
-sudo rm -frv /etc/nixos/ \
-&& sudo mkdir -pv /etc/nixos/ \
-&& cd /etc/nixos \
-&& sudo \
-    nix \
-    --extra-experimental-features nix-command \
-    --extra-experimental-features flakes \
-    --refresh \
-    flake \
-    init \
-    --template \
-    github:PedroRegisPOAR/dotfiles#UTMNixOSBootstrap \
-&& sudo \
-nix \
---extra-experimental-features nix-command \
---extra-experimental-features flakes \
-flake \
-lock \
---override-input nixpkgs github:NixOS/nixpkgs/0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5 \
-&& sudo nixos-rebuild test --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto \
-&& sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
-```
-
 ```bash
 sudo rm -frv /etc/nixos/ \
 && sudo mkdir -pv /etc/nixos/ \
