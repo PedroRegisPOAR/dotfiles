@@ -4,13 +4,14 @@
     nix \
     flake \
     lock \
-    --override-input nixpkgs 'github:NixOS/nixpkgs/d7a713c0b7e47c908258e71cba7a2d77cc8d71d5' 
+    --override-input nixpkgs 'github:NixOS/nixpkgs/b77b3de8775677f84492abe84635f87b0e153f0f' 
   */
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { self, nixpkgs, nixpkgsUnstable, ... }:
     let
       systems = [ "aarch64-linux" "x86_64-linux" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -30,6 +31,47 @@
               && nix flake check --all-systems --verbose '.#'
             '';
           } // { meta.mainProgram = "all-tests"; };
+
+        rtk = nixpkgsUnstable.legacyPackages.${final.stdenv.hostPlatform.system}.rtk; # TODO: Once 26.05 is out, remove.
+
+        caveman = final.stdenv.mkDerivation {
+          pname = "caveman";
+          version = "0.1.0";
+          src = final.fetchFromGitHub {
+            owner = "JuliusBrussee";
+            repo = "caveman";
+            rev = "655b7d9c5431f822264b7732e9901c5578ac84cf";
+            hash = "sha256-BydREt/vai3j7kO5+e1OxsjXf6Vy+jSY1yA/yyxjHbI=";
+          };
+          nativeBuildInputs = [ final.makeWrapper ];
+          dontBuild = true;
+          installPhase = ''
+            mkdir -p $out/lib/caveman $out/bin
+            cp -r . $out/lib/caveman
+            makeWrapper ${final.nodejs}/bin/node $out/bin/caveman \
+              --add-flags "$out/lib/caveman/bin/install.js"
+          '';
+          meta.mainProgram = "caveman";
+        };
+
+        claude-mem = final.stdenv.mkDerivation rec {
+          pname = "claude-mem";
+          version = "13.3.0";
+          src = final.fetchurl {
+            url = "https://registry.npmjs.org/claude-mem/-/claude-mem-${version}.tgz";
+            hash = "sha256-IBNHQ9ZrbDb8bf74WPJtfrlDcIa/auLzJZ5IhtHbNmo=";
+          };
+          sourceRoot = "package";
+          nativeBuildInputs = [ final.makeWrapper ];
+          dontBuild = true;
+          installPhase = ''
+            mkdir -p $out/lib/claude-mem $out/bin
+            cp -r . $out/lib/claude-mem
+            makeWrapper ${final.nodejs}/bin/node $out/bin/claude-mem \
+              --add-flags "$out/lib/claude-mem/dist/npx-cli/index.js"
+          '';
+          meta.mainProgram = "claude-mem";
+        };
       };
 
       pkgsFor = system: import nixpkgs {
