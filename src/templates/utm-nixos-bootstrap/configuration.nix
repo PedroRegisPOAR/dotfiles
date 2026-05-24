@@ -228,6 +228,8 @@
   nix.settings.min-free = 1024 * 1024 * 1024;
   nix.settings.max-free = 1024 * 1024 * 1024 * 5;
 
+  nix.settings.trusted-users = [ "@wheel" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -236,6 +238,9 @@
 
     claude-code
     mcp-nixos
+    rtk
+    caveman
+    claude-mem
     uv
     python3
 
