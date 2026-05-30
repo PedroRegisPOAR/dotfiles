@@ -14,7 +14,7 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 
 Alpine Linux
 ```bash
-wget https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrapa.sh | sh && exec /home/"$USER"/.nix-profile/bin/zsh --login
+wget -O - https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrapa.sh | sh && exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
 
 
