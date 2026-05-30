@@ -1,5 +1,7 @@
 # dotfiles
 
+
+
 ```bash
 curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh | "$SHELL"
 ```
@@ -7,6 +9,12 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/apt-fu.sh
 ```bash
 curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap.sh | sh \
 && exec /home/"$USER"/.nix-profile/bin/zsh --login
+```
+
+
+Alpine Linux
+```bash
+wget https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrapa.sh | sh && exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
 
 
