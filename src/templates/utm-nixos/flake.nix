@@ -106,6 +106,31 @@
         aws-api-mcp-server = final.writeShellScriptBin "aws-api-mcp-server" ''
           exec ${final.uv}/bin/uvx awslabs.aws-api-mcp-server@latest "$@"
         '';
+
+        context7-mcp = final.writeShellScriptBin "context7-mcp" ''
+          export PATH="${final.nodejs}/bin:$PATH"
+          exec ${final.nodejs}/bin/npx -y @upstash/context7-mcp@latest "$@"
+        '';
+
+        superpowers-plugin = final.stdenv.mkDerivation rec {
+          pname = "superpowers-plugin";
+          version = "5.1.0";
+          src = final.fetchFromGitHub {
+            owner = "obra";
+            repo = "superpowers";
+            rev = "v${version}";
+            hash = "sha256-3E3rO6hR87JUfS3XV1Eaoz6SDWOftleWvN9UPNFEMjw=";
+          };
+          installPhase = ''
+            mkdir -p $out/lib/superpowers
+            cp -r . $out/lib/superpowers/
+          '';
+          meta = with final.lib; {
+            description = "Superpowers skills framework for Claude Code";
+            homepage = "https://github.com/obra/superpowers";
+            license = licenses.mit;
+          };
+        };
       };
 
       pkgsFor = system: import nixpkgs {

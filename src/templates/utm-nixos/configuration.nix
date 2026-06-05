@@ -244,6 +244,8 @@
     claude-mem
     awscli2
     aws-api-mcp-server
+    context7-mcp
+    superpowers-plugin
     uv
     python3
 
