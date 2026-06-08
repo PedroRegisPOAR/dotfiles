@@ -130,3 +130,13 @@ COMMANDS
 ```
 Refs.:
 - https://unix.stackexchange.com/a/654575
+
+
+## Other tooling
+
+- https://claude.com/product/claude-code
+- https://github.com/obra/superpowers
+- https://github.com/thedotmack/claude-mem
+- https://github.com/rtk-ai/rtk
+- https://github.com/upstash/context7
+- https://github.com/JuliusBrussee/caveman
