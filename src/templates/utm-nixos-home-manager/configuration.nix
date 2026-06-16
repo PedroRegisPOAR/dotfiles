@@ -1,0 +1,265 @@
+{ config, pkgs, inputs, ... }:
+
+{
+  imports =
+    [
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # https://github.com/NixOS/nixpkgs/issues/27930#issuecomment-417943781
+  boot.kernelModules = [
+    # "pci-stub"
+    # "kvm-amd"
+    # "vfio"
+    # "vfio_iommu_type1"
+    # "vfio_pci"
+    # "vfio_virqfd"
+  ];
+  # https://nixos.wiki/wiki/Libvirt
+  # boot.extraModprobeConfig = "options kvm_amd nested=1";
+
+  /*
+    # supported file systems, so we can mount any removable disks with these filesystems
+    boot.supportedFilesystems = [
+    "ext4"
+    "btrfs"
+    "xfs"
+    #"zfs"
+    "ntfs"
+    "fat"
+    "vfat"
+    "exfat"
+    ];
+  */
+
+  # Swap comprimido em memória (~4.8 GiB virtuais). Sem custo de disco, ideal para VMs.
+  # Dá ao kernel espaço para mover páginas frias antes de matar processos de build.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
+  networking.hostName = "n1x0s"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "America/Fortaleza";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Configure keymap in X11
+  services.xserver.xkb.layout = "br";
+  # services.xserver.xkb.variant = "thinkpad";
+  # Configure console keymap
+  console.keyMap = "br-abnt2";
+
+  # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.displayManager.autoLogin.user = "fog";
+
+  # https://nixos.org/manual/nixos/stable/#sec-xfce
+  # services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.xfce.enableScreensaver = false;
+  # services.displayManager.autoLogin.user = "fog";
+
+  services.spice-vdagentd.enable = true;
+  systemd.user.services.spice-vdagent = {
+    description = "spice-vdagent user daemon";
+    after = [ "spice-vdagentd.service" "graphical-session.target" ];
+    requires = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.spice-vdagent}/bin/spice-vdagent -x";
+    };
+    unitConfig = {
+      ConditionPathExists = "/run/spice-vdagentd/spice-vdagent-sock";
+    };
+  };
+  services.xserver.videoDrivers = [ "qxl" ];
+
+  # services.getty.helpLine = pkgs.lib.mkForce "" ; 
+
+  environment.etc."xdg/autostart/kgx.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=KGX
+    Exec=${pkgs.gnome-console}/bin/kgx
+    X-GNOME-Autostart-enabled=true
+  '';
+
+  environment.etc."xdg/autostart/kgxbtop.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=KGXBTOP
+    Exec=${pkgs.gnome-console}/bin/kgx -e "btop"
+    X-GNOME-Autostart-enabled=true
+  '';
+
+  # Enable CUPS to print documents.
+  services.printing.enable = false;
+
+  # Mata proativamente processos pesados quando RAM + swap < threshold%,
+  # antes que o kernel OOM-killer aja de forma abrupta.
+  services.earlyoom = {
+    enable = true;
+    freeMemThreshold = 5;
+    freeSwapThreshold = 5;
+    extraArgs = [
+      "--prefer"
+      "^(nix|cc|c\\+\\+|ld|rustc|cargo)"
+    ];
+  };
+
+  security.sudo.wheelNeedsPassword = false; # TODO: hardening
+  # https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
+  # users.extraGroups.fog.gid = 1000;
+  users.groups.fog.gid = 1000;
+
+  users.users.fog = {
+    isNormalUser = true;
+    password = "1"; # TODO: hardening
+    createHome = true;
+    home = "/home/fog";
+    homeMode = "0700";
+    description = "The VM tester Fog user";
+    group = "fog";
+    extraGroups = [
+      "docker"
+      "kvm"
+      "networkmanager"
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+    uid = 1000;
+    autoSubUidGidRange = true;
+  };
+
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      powerline
+      powerline-fonts
+    ];
+    enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
+  };
+
+  programs.zsh.enable = true;
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.overlays = [ inputs.mcp-nixos.overlays.default ];
+
+  nix.extraOptions = "experimental-features = nix-command flakes";
+  nix.settings.cores = 4; # https://discourse.nixos.org/t/i-o-cpu-scheduling-jobs-cores-and-performance-baby/66120/4
+  nix.settings.max-jobs = 1;
+  # Dispara GC automático do nix store quando o espaço livre cair abaixo de 1 GiB,
+  # coletando até liberar 5 GiB. Evita falhas de build por falta de espaço em disco.
+  nix.settings.min-free = 1024 * 1024 * 1024;
+  nix.settings.max-free = 1024 * 1024 * 1024 * 5;
+
+  nix.settings.trusted-users = [ "@wheel" ];
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    spice-vdagent # It is an must for copy and paste to work.
+    spice-gtk # It is an must for copy and paste to work.
+
+    claude-code
+    mcp-nixos
+    rtk
+    caveman
+    claude-mem
+    awscli2
+    aws-api-mcp-server
+    context7-mcp
+    superpowers-plugin
+    uv
+    python3
+
+    binutils
+    btop
+    chrpath
+    coreutils
+    curl
+    exfat
+    file
+    findutils
+    gawk
+    git
+    glibc.bin
+    gnome-terminal
+    gnugrep
+    gnumake
+    gnused
+    gparted
+    killall
+    lsof
+    netcat
+    nettools
+    nmap
+    openssh
+    patchelf
+    procps
+    tree
+    util-linux
+    wget
+    which
+    xkill
+    xclip
+    xz
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It's perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.11"; # Did you read the comment?
+}
