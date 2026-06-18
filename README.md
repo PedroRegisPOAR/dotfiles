@@ -12,7 +12,7 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 ```
 
 
-Alpine Linux
+For Alpine Linux:
 ```bash
 wget -O - https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrapa.sh | sh && exec /home/"$USER"/.nix-profile/bin/zsh --login
 ```
@@ -23,7 +23,8 @@ curl -L https://raw.githubusercontent.com/PedroRegisPOAR/dotfiles/main/bootstrap
 && . ~/.profile
 ```
 
-
+From: NixOS VM in UTM
+To: NixOS VM in UTM with tools
 ```bash
 sudo rm -frv /etc/nixos/ \
 && sudo mkdir -pv /etc/nixos/ \
@@ -43,23 +44,28 @@ sudo rm -frv /etc/nixos/ \
 && sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
 ```
 
-TODO: analise this, is it worth? Whats does it do?
+From: NixOS VM in UTM
+To: NixOS VM in UTM with home-manager
 ```bash
-services.qemuGuest.enable = true;
+sudo rm -frv /etc/nixos/ \
+&& sudo mkdir -pv /etc/nixos/ \
+&& cd /etc/nixos \
+&& sudo \
+    nix \
+    --extra-experimental-features nix-command \
+    --extra-experimental-features flakes \
+    --refresh \
+    flake \
+    init \
+    --template \
+    github:PedroRegisPOAR/dotfiles#UTMNixOSHomeManager \
+&& sudo git init \
+&& sudo git add . \
+&& sudo nixos-rebuild test --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto \
+&& sudo nixos-rebuild switch --flake '/etc/nixos#n1x0s' --option cores 0 --option max-jobs auto
 ```
 
-```bash
-sudo \
-nix \
---extra-experimental-features nix-command \
---extra-experimental-features flakes \
-flake \
-lock \
---override-input nixpkgs github:NixOS/nixpkgs/f560ccec6b1116b22e6ed15f4c510997d99d5852
-```
 
-
-0)
 ```bash
 test -w /nix/var/nix || sudo sh -c 'mkdir -pv -m 1735 /nix/var/nix && chown -Rv '"$(id -nu)":"$(id -gn)"' /nix'
 

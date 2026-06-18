@@ -68,6 +68,7 @@ github:PedroRegisPOAR/dotfiles#homeManagerWithTools
 
 
 # home-manager switch --option download-buffer-size 671088640 --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"-"$(hostname)"
-home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#$HM_ATTR
+home-manager switch --option download-buffer-size 671088640 --impure --flake "$HOME/.config/nixpkgs"#"$(id -un)"
+# home-manager switch --option download-buffer-size 671088640  --impure --flake "$HOME/.config/nixpkgs"#$HM_ATTR
 COMMANDS
 ```
